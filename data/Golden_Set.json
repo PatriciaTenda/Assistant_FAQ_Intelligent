@@ -1,0 +1,296 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "Jeu de test pour évaluer les stratégies de réponse FAQ",
+    "total_questions": 30,
+    "categories": {
+      "direct_match": 10,
+      "reformulation": 10,
+      "hors_sujet": 5,
+      "complexe": 5
+    },
+    "evaluation_criteria": {
+      "exactitude": "La réponse contient les informations clés attendues",
+      "pertinence": "La réponse est en rapport avec la question",
+      "absence_hallucination": "La réponse ne contient pas d'informations inventées",
+      "aveu_ignorance": "Pour les questions hors sujet, le système reconnaît ne pas savoir"
+    }
+  },
+  "golden_set": [
+    {
+      "id": "GS001",
+      "type": "direct_match",
+      "question": "Comment obtenir un acte de naissance ?",
+      "faq_id_reference": "EC001",
+      "expected_keywords": ["service-public.fr", "mairie", "lieu de naissance", "gratuit", "pièce d'identité"],
+      "expected_answer_summary": "Demande en ligne, par courrier ou en mairie du lieu de naissance, gratuite, avec pièce d'identité",
+      "difficulty": "facile"
+    },
+    {
+      "id": "GS002",
+      "type": "direct_match",
+      "question": "Quels sont les horaires de la déchetterie ?",
+      "faq_id_reference": "DEC006",
+      "expected_keywords": ["lundi", "samedi", "9h", "12h", "14h", "18h", "17h", "hiver"],
+      "expected_answer_summary": "Lundi au samedi 9h-12h et 14h-18h (17h en hiver), fermée dimanche et jours fériés",
+      "difficulty": "facile"
+    },
+    {
+      "id": "GS003",
+      "type": "direct_match",
+      "question": "Comment s'inscrire sur les listes électorales ?",
+      "faq_id_reference": "ELE001",
+      "expected_keywords": ["service-public.fr", "mairie", "pièce d'identité", "justificatif de domicile"],
+      "expected_answer_summary": "En ligne, en mairie ou par courrier avec pièce d'identité et justificatif de domicile",
+      "difficulty": "facile"
+    },
+    {
+      "id": "GS004",
+      "type": "direct_match",
+      "question": "Comment demander un permis de construire ?",
+      "faq_id_reference": "URB001",
+      "expected_keywords": ["mairie", "4 exemplaires", "Cerfa", "plan", "2 mois", "3 mois"],
+      "expected_answer_summary": "Dépôt en mairie en 4 exemplaires, formulaire Cerfa, plans requis, délai 2-3 mois",
+      "difficulty": "moyen"
+    },
+    {
+      "id": "GS005",
+      "type": "direct_match",
+      "question": "Quels déchets mettre dans le bac jaune ?",
+      "faq_id_reference": "DEC004",
+      "expected_keywords": ["emballages plastiques", "bouteilles", "métalliques", "conserves", "cartons", "papiers"],
+      "expected_answer_summary": "Emballages plastiques, métalliques, briques alimentaires, papiers-cartons, vides mais non lavés",
+      "difficulty": "facile"
+    },
+    {
+      "id": "GS006",
+      "type": "direct_match",
+      "question": "Comment faire une procuration pour voter ?",
+      "faq_id_reference": "ELE002",
+      "expected_keywords": ["maprocuration.gouv.fr", "commissariat", "gendarmerie", "même commune"],
+      "expected_answer_summary": "En ligne sur maprocuration.gouv.fr puis validation en commissariat/gendarmerie, mandataire même commune",
+      "difficulty": "moyen"
+    },
+    {
+      "id": "GS007",
+      "type": "direct_match",
+      "question": "Comment inscrire mon enfant à la crèche ?",
+      "faq_id_reference": "ENF001",
+      "expected_keywords": ["Relais Petite Enfance", "dossier", "pièces d'identité", "commission"],
+      "expected_answer_summary": "Inscription au Relais Petite Enfance avec dossier complet, attribution en commission",
+      "difficulty": "moyen"
+    },
+    {
+      "id": "GS008",
+      "type": "direct_match",
+      "question": "Comment créer une association loi 1901 ?",
+      "faq_id_reference": "ASS001",
+      "expected_keywords": ["greffe", "préfecture", "statuts", "44€", "Journal Officiel"],
+      "expected_answer_summary": "Déclaration au greffe des associations, statuts signés, publication JO à 44€",
+      "difficulty": "moyen"
+    },
+    {
+      "id": "GS009",
+      "type": "direct_match",
+      "question": "Comment obtenir la carte mobilité inclusion ?",
+      "faq_id_reference": "SOC003",
+      "expected_keywords": ["MDPH", "Cerfa", "4 à 6 mois", "gratuite"],
+      "expected_answer_summary": "Demande à la MDPH via formulaire Cerfa, délai 4-6 mois, gratuit",
+      "difficulty": "moyen"
+    },
+    {
+      "id": "GS010",
+      "type": "direct_match",
+      "question": "Quels sont les tarifs de la cantine scolaire ?",
+      "faq_id_reference": "ENF002",
+      "expected_keywords": ["quotient familial", "1,50€", "5,50€", "CAF"],
+      "expected_answer_summary": "Tarifs selon quotient familial CAF de 1,50€ à 5,50€ par repas",
+      "difficulty": "facile"
+    },
+    {
+      "id": "GS011",
+      "type": "reformulation",
+      "question": "Je voudrais un extrait de naissance, comment faire ?",
+      "faq_id_reference": "EC001",
+      "expected_keywords": ["service-public.fr", "mairie", "lieu de naissance", "gratuit"],
+      "expected_answer_summary": "Même réponse que pour acte de naissance",
+      "difficulty": "facile"
+    },
+    {
+      "id": "GS012",
+      "type": "reformulation",
+      "question": "C'est quoi les jours de ramassage des poubelles ?",
+      "faq_id_reference": "DEC001",
+      "expected_keywords": ["mardi", "vendredi", "mercredi", "centre-ville", "périphérie"],
+      "expected_answer_summary": "Mardi et vendredi centre-ville, mercredi quartiers périphériques",
+      "difficulty": "facile"
+    },
+    {
+      "id": "GS013",
+      "type": "reformulation",
+      "question": "On peut jeter quoi dans la poubelle de recyclage ?",
+      "faq_id_reference": "DEC004",
+      "expected_keywords": ["emballages", "plastique", "métal", "carton", "papier"],
+      "expected_answer_summary": "Emballages plastiques, métalliques, cartons, papiers",
+      "difficulty": "facile"
+    },
+    {
+      "id": "GS014",
+      "type": "reformulation",
+      "question": "J'ai perdu mon permis de conduire, que dois-je faire ?",
+      "faq_id_reference": "DIV003",
+      "expected_keywords": ["ANTS", "duplicata", "photo", "25€"],
+      "expected_answer_summary": "Demande de duplicata sur ANTS, 25€, 2-3 semaines",
+      "difficulty": "moyen"
+    },
+    {
+      "id": "GS015",
+      "type": "reformulation",
+      "question": "Je déménage, comment prévenir les impôts ?",
+      "faq_id_reference": "FIS003",
+      "expected_keywords": ["impots.gouv.fr", "profil", "déclaration", "service-public.fr"],
+      "expected_answer_summary": "En ligne sur impots.gouv.fr ou lors de la déclaration annuelle",
+      "difficulty": "facile"
+    },
+    {
+      "id": "GS016",
+      "type": "reformulation",
+      "question": "Ma fille a 3 ans, je dois l'inscrire à la maternelle ?",
+      "faq_id_reference": "ENF004",
+      "expected_keywords": ["obligatoire", "3 ans", "janvier", "mars", "mairie"],
+      "expected_answer_summary": "Oui instruction obligatoire dès 3 ans, inscription en mairie de janvier à mars",
+      "difficulty": "moyen"
+    },
+    {
+      "id": "GS017",
+      "type": "reformulation",
+      "question": "Je veux vendre ma voiture, il me faut quoi comme papier de non-gage ?",
+      "faq_id_reference": "DIV007",
+      "expected_keywords": ["certificat", "situation administrative", "ANTS", "Histovec", "gratuit"],
+      "expected_answer_summary": "Certificat de situation administrative sur ANTS ou Histovec, gratuit et immédiat",
+      "difficulty": "facile"
+    },
+    {
+      "id": "GS018",
+      "type": "reformulation",
+      "question": "Il y a des bus qui passent par chez nous ? Où voir les horaires ?",
+      "faq_id_reference": "TRA003",
+      "expected_keywords": ["rémi", "application", "office de tourisme", "mairie"],
+      "expected_answer_summary": "Horaires sur site rémi, application, office de tourisme ou mairie",
+      "difficulty": "facile"
+    },
+    {
+      "id": "GS019",
+      "type": "reformulation",
+      "question": "Mon voisin a une fuite d'eau dans la rue, qui appeler ?",
+      "faq_id_reference": "EAU002",
+      "expected_keywords": ["service des eaux", "téléphone", "urgence", "24h/24"],
+      "expected_answer_summary": "Appeler le service des eaux, numéro urgences disponible 24h/24",
+      "difficulty": "facile"
+    },
+    {
+      "id": "GS020",
+      "type": "reformulation",
+      "question": "Pour le mariage civil, c'est quoi la liste des papiers à donner ?",
+      "faq_id_reference": "EC002",
+      "expected_keywords": ["pièce d'identité", "justificatif de domicile", "acte de naissance", "témoins", "1 mois"],
+      "expected_answer_summary": "Pièce d'identité, justificatif domicile, acte de naissance, liste témoins, dépôt 1 mois avant",
+      "difficulty": "moyen"
+    },
+    {
+      "id": "GS021",
+      "type": "hors_sujet",
+      "question": "Quelle est la capitale de l'Australie ?",
+      "faq_id_reference": null,
+      "expected_keywords": [],
+      "expected_answer_summary": "Le système doit indiquer qu'il ne peut pas répondre à cette question (hors périmètre FAQ collectivité)",
+      "difficulty": "facile",
+      "expected_behavior": "aveu_ignorance"
+    },
+    {
+      "id": "GS022",
+      "type": "hors_sujet",
+      "question": "Comment faire une tarte aux pommes ?",
+      "faq_id_reference": null,
+      "expected_keywords": [],
+      "expected_answer_summary": "Le système doit indiquer qu'il ne peut pas répondre à cette question (hors périmètre FAQ collectivité)",
+      "difficulty": "facile",
+      "expected_behavior": "aveu_ignorance"
+    },
+    {
+      "id": "GS023",
+      "type": "hors_sujet",
+      "question": "Quel est le meilleur smartphone en 2025 ?",
+      "faq_id_reference": null,
+      "expected_keywords": [],
+      "expected_answer_summary": "Le système doit indiquer qu'il ne peut pas répondre à cette question (hors périmètre FAQ collectivité)",
+      "difficulty": "facile",
+      "expected_behavior": "aveu_ignorance"
+    },
+    {
+      "id": "GS024",
+      "type": "hors_sujet",
+      "question": "Comment investir en bourse ?",
+      "faq_id_reference": null,
+      "expected_keywords": [],
+      "expected_answer_summary": "Le système doit indiquer qu'il ne peut pas répondre à cette question (hors périmètre FAQ collectivité)",
+      "difficulty": "facile",
+      "expected_behavior": "aveu_ignorance"
+    },
+    {
+      "id": "GS025",
+      "type": "hors_sujet",
+      "question": "Qui a gagné la coupe du monde de football en 1998 ?",
+      "faq_id_reference": null,
+      "expected_keywords": [],
+      "expected_answer_summary": "Le système doit indiquer qu'il ne peut pas répondre à cette question (hors périmètre FAQ collectivité)",
+      "difficulty": "facile",
+      "expected_behavior": "aveu_ignorance"
+    },
+    {
+      "id": "GS026",
+      "type": "complexe",
+      "question": "Je viens d'avoir un bébé et je ne suis pas mariée avec le père, quelles démarches dois-je faire ?",
+      "faq_id_reference": ["EC005", "EC006"],
+      "expected_keywords": ["reconnaissance", "livret de famille", "filiation", "mairie"],
+      "expected_answer_summary": "Le père doit faire une reconnaissance en mairie. Un livret de famille sera délivré à la naissance du premier enfant pour les couples non mariés.",
+      "difficulty": "difficile"
+    },
+    {
+      "id": "GS027",
+      "type": "complexe",
+      "question": "Je construis une maison avec piscine, quelles autorisations me faut-il ?",
+      "faq_id_reference": ["URB001", "URB003"],
+      "expected_keywords": ["permis de construire", "déclaration préalable", "piscine", "architecte", "150m²"],
+      "expected_answer_summary": "Permis de construire pour la maison (architecte si >150m²). Pour la piscine : selon taille, déclaration préalable (10-100m²) ou intégration au permis.",
+      "difficulty": "difficile"
+    },
+    {
+      "id": "GS028",
+      "type": "complexe",
+      "question": "Je suis en difficulté financière, je n'arrive plus à payer mes factures d'eau et d'électricité, qui peut m'aider ?",
+      "faq_id_reference": ["SOC001", "SOC004"],
+      "expected_keywords": ["CCAS", "FSL", "chèque énergie", "travailleur social", "aide"],
+      "expected_answer_summary": "Contacter le CCAS pour un rendez-vous avec un travailleur social. Le FSL peut aider pour les factures. Vérifier l'éligibilité au chèque énergie.",
+      "difficulty": "difficile"
+    },
+    {
+      "id": "GS029",
+      "type": "complexe",
+      "question": "Mon association veut organiser un vide-grenier sur la place du village, comment faire ?",
+      "faq_id_reference": ["ASS003", "ASS004"],
+      "expected_keywords": ["déclaration", "mairie", "1 mois", "assurance", "autorisation", "voie publique"],
+      "expected_answer_summary": "Déclaration en mairie 1 mois avant avec descriptif, plan, assurance. Demande d'autorisation d'occupation du domaine public.",
+      "difficulty": "difficile"
+    },
+    {
+      "id": "GS030",
+      "type": "complexe",
+      "question": "J'emménage dans la commune, quelles sont toutes les démarches administratives à faire ?",
+      "faq_id_reference": ["ELE001", "EAU001", "FIS003", "ENF004"],
+      "expected_keywords": ["listes électorales", "compteur eau", "impôts", "école"],
+      "expected_answer_summary": "Inscription listes électorales, ouverture compteur eau, changement adresse impôts, inscription école si enfants.",
+      "difficulty": "difficile"
+    }
+  ]
+}

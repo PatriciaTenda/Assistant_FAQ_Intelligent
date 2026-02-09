@@ -1,0 +1,493 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "source": "Communauté de Communes Val de Loire Numérique",
+    "last_updated": "2025-01-15",
+    "total_entries": 70,
+    "categories": [
+      "etat_civil",
+      "urbanisme",
+      "dechets_environnement",
+      "transports",
+      "petite_enfance",
+      "social_solidarite",
+      "vie_associative",
+      "elections",
+      "logement",
+      "culture_sport",
+      "fiscalite",
+      "eau_assainissement"
+    ]
+  },
+  "faq": [
+    {
+      "id": "EC001",
+      "category": "etat_civil",
+      "question": "Comment obtenir un acte de naissance ?",
+      "answer": "Pour obtenir un acte de naissance, vous pouvez faire la demande en ligne sur le site service-public.fr, par courrier à la mairie du lieu de naissance, ou directement au guichet. La demande est gratuite. Munissez-vous d'une pièce d'identité. Le délai de délivrance est de 3 à 10 jours ouvrés selon le mode de demande.",
+      "keywords": ["naissance", "acte", "extrait", "certificat", "état civil"]
+    },
+    {
+      "id": "EC002",
+      "category": "etat_civil",
+      "question": "Quels documents faut-il pour se marier ?",
+      "answer": "Pour se marier, chaque futur époux doit fournir : une pièce d'identité en cours de validité, un justificatif de domicile de moins de 3 mois, un acte de naissance de moins de 3 mois (6 mois si délivré à l'étranger), la liste des témoins (2 à 4 personnes majeures). Le dossier doit être déposé à la mairie au moins 1 mois avant la date souhaitée.",
+      "keywords": ["mariage", "documents", "dossier", "épouser", "union"]
+    },
+    {
+      "id": "EC003",
+      "category": "etat_civil",
+      "question": "Comment déclarer un décès ?",
+      "answer": "La déclaration de décès doit être faite dans les 24 heures à la mairie du lieu de décès. Elle peut être effectuée par un proche ou les pompes funèbres. Documents nécessaires : certificat médical de décès, pièce d'identité du défunt et du déclarant, livret de famille si disponible. L'acte de décès est délivré immédiatement et gratuitement.",
+      "keywords": ["décès", "mort", "déclaration", "acte de décès"]
+    },
+    {
+      "id": "EC004",
+      "category": "etat_civil",
+      "question": "Comment conclure un PACS ?",
+      "answer": "Pour conclure un PACS, les partenaires doivent se présenter ensemble à la mairie de leur résidence commune avec : pièces d'identité, actes de naissance de moins de 3 mois, convention de PACS (modèle disponible en mairie ou sur service-public.fr), attestation sur l'honneur de non-parenté. L'enregistrement est gratuit et immédiat.",
+      "keywords": ["PACS", "pacte civil", "union", "partenariat", "concubinage"]
+    },
+    {
+      "id": "EC005",
+      "category": "etat_civil",
+      "question": "Comment obtenir un livret de famille ?",
+      "answer": "Le livret de famille est délivré automatiquement lors du mariage ou à la naissance du premier enfant pour les couples non mariés. En cas de perte ou de vol, vous pouvez demander un duplicata à la mairie de votre domicile. Munissez-vous d'une pièce d'identité et d'un justificatif de domicile. Le délai est de 2 à 4 semaines.",
+      "keywords": ["livret", "famille", "duplicata", "perte"]
+    },
+    {
+      "id": "EC006",
+      "category": "etat_civil",
+      "question": "Comment faire reconnaître un enfant ?",
+      "answer": "La reconnaissance d'un enfant peut être faite avant ou après la naissance, à la mairie de votre choix. Le père non marié doit effectuer cette démarche pour établir la filiation. Documents : pièce d'identité, justificatif de domicile, acte de naissance de l'enfant (si reconnaissance après naissance). La reconnaissance est gratuite et immédiate.",
+      "keywords": ["reconnaissance", "enfant", "filiation", "père", "paternité"]
+    },
+    {
+      "id": "EC007",
+      "category": "etat_civil",
+      "question": "Comment changer de prénom ?",
+      "answer": "Depuis 2017, le changement de prénom se fait en mairie. Vous devez justifier d'un intérêt légitime (prénom ridicule, francisation, identité de genre...). Déposez votre demande à la mairie de votre lieu de résidence ou de naissance avec : pièce d'identité, acte de naissance, justificatif de domicile, et tout document justifiant votre demande. Délai : 1 à 3 mois.",
+      "keywords": ["prénom", "changement", "modification", "identité"]
+    },
+    {
+      "id": "URB001",
+      "category": "urbanisme",
+      "question": "Comment déposer un permis de construire ?",
+      "answer": "Le permis de construire se dépose à la mairie en 4 exemplaires minimum (5 si le terrain est en secteur protégé). Utilisez le formulaire Cerfa n°13406 pour une maison individuelle ou n°13409 pour les autres constructions. Le dossier comprend : plan de situation, plan de masse, plans des façades, photos. Délai d'instruction : 2 mois pour une maison, 3 mois pour les autres projets.",
+      "keywords": ["permis", "construire", "construction", "travaux", "bâtiment"]
+    },
+    {
+      "id": "URB002",
+      "category": "urbanisme",
+      "question": "Quelle autorisation pour une extension de maison ?",
+      "answer": "L'autorisation dépend de la surface créée : moins de 5m² aucune formalité, de 5 à 20m² une déclaration préalable suffit, au-delà de 20m² un permis de construire est nécessaire. En zone urbaine avec PLU, le seuil passe à 40m² pour la déclaration préalable. Attention : si la surface totale dépasse 150m² après travaux, le recours à un architecte est obligatoire.",
+      "keywords": ["extension", "agrandissement", "surface", "déclaration", "permis"]
+    },
+    {
+      "id": "URB003",
+      "category": "urbanisme",
+      "question": "Faut-il une autorisation pour installer une piscine ?",
+      "answer": "Pour une piscine hors-sol installée moins de 3 mois : aucune autorisation. Pour une piscine enterrée de moins de 10m² : aucune autorisation. De 10 à 100m² : déclaration préalable de travaux. Au-delà de 100m² ou avec un abri de plus de 1,80m de haut : permis de construire. Un dispositif de sécurité homologué est obligatoire.",
+      "keywords": ["piscine", "bassin", "autorisation", "déclaration"]
+    },
+    {
+      "id": "URB004",
+      "category": "urbanisme",
+      "question": "Comment consulter le PLU de la commune ?",
+      "answer": "Le Plan Local d'Urbanisme (PLU) est consultable gratuitement en mairie au service urbanisme, aux horaires d'ouverture. Il est également disponible en ligne sur le Géoportail de l'urbanisme (geoportail-urbanisme.gouv.fr). Vous pouvez demander un certificat d'urbanisme pour connaître les règles applicables à une parcelle précise.",
+      "keywords": ["PLU", "urbanisme", "règlement", "zonage", "plan"]
+    },
+    {
+      "id": "URB005",
+      "category": "urbanisme",
+      "question": "Comment déposer une déclaration préalable de travaux ?",
+      "answer": "La déclaration préalable se dépose en mairie en 2 exemplaires (3 en secteur protégé). Utilisez le formulaire Cerfa n°13703 ou n°13404 selon les travaux. Documents : plan de situation, plan de masse, représentation de l'aspect extérieur. Le délai d'instruction est d'1 mois (2 mois en secteur protégé). Le silence de l'administration vaut accord.",
+      "keywords": ["déclaration préalable", "travaux", "Cerfa", "autorisation"]
+    },
+    {
+      "id": "URB006",
+      "category": "urbanisme",
+      "question": "Peut-on installer un abri de jardin sans autorisation ?",
+      "answer": "Un abri de jardin de moins de 5m² au sol et de moins de 12m de haut ne nécessite aucune autorisation. De 5 à 20m² : déclaration préalable obligatoire. Au-delà de 20m² : permis de construire requis. Attention : en secteur protégé (monuments historiques, site classé), une autorisation est toujours nécessaire quelle que soit la surface.",
+      "keywords": ["abri", "jardin", "cabanon", "autorisation", "surface"]
+    },
+    {
+      "id": "DEC001",
+      "category": "dechets_environnement",
+      "question": "Quel jour passe la collecte des ordures ménagères ?",
+      "answer": "La collecte des ordures ménagères a lieu le mardi et le vendredi pour le centre-ville, et le mercredi pour les quartiers périphériques et les communes rurales. Sortez vos bacs la veille au soir avant 20h. Le calendrier détaillé par secteur est disponible en mairie ou sur notre site internet.",
+      "keywords": ["collecte", "ordures", "poubelle", "ramassage", "jour"]
+    },
+    {
+      "id": "DEC002",
+      "category": "dechets_environnement",
+      "question": "Où déposer les déchets verts ?",
+      "answer": "Les déchets verts (tontes, tailles, feuilles) peuvent être déposés gratuitement à la déchetterie intercommunale, ouverte du lundi au samedi de 9h à 18h. Vous pouvez aussi les composter chez vous (composteurs disponibles à tarif réduit en mairie). Le brûlage des déchets verts est interdit toute l'année.",
+      "keywords": ["déchets verts", "jardin", "tonte", "taille", "végétaux"]
+    },
+    {
+      "id": "DEC003",
+      "category": "dechets_environnement",
+      "question": "Comment obtenir un bac poubelle ?",
+      "answer": "Pour obtenir ou remplacer un bac poubelle, contactez le service environnement de la communauté de communes par téléphone ou via le formulaire en ligne. La dotation initiale est gratuite. Les bacs sont fournis en 120L ou 240L selon la composition du foyer. Le remplacement pour vétusté est gratuit, en cas de perte il est facturé 50€.",
+      "keywords": ["bac", "poubelle", "conteneur", "container", "obtenir"]
+    },
+    {
+      "id": "DEC004",
+      "category": "dechets_environnement",
+      "question": "Quels déchets vont dans le bac jaune ?",
+      "answer": "Dans le bac jaune : emballages plastiques (bouteilles, flacons, pots, barquettes, films), emballages métalliques (conserves, canettes, aérosols vides), briques alimentaires, et tous les papiers-cartons (journaux, magazines, cartons). Tous les emballages doivent être vides mais non lavés. Ne pas imbriquer les emballages.",
+      "keywords": ["tri", "jaune", "recyclage", "emballages", "plastique"]
+    },
+    {
+      "id": "DEC005",
+      "category": "dechets_environnement",
+      "question": "Où jeter les piles et batteries usagées ?",
+      "answer": "Les piles et batteries doivent être déposées dans les bornes de collecte disponibles en mairie, dans les supermarchés, ou à la déchetterie. Ne les jetez jamais dans les ordures ménagères car elles contiennent des métaux lourds polluants. Les magasins qui vendent des piles sont obligés de reprendre les usagées.",
+      "keywords": ["piles", "batteries", "accumulateurs", "recyclage", "collecte"]
+    },
+    {
+      "id": "DEC006",
+      "category": "dechets_environnement",
+      "question": "Quels sont les horaires de la déchetterie ?",
+      "answer": "La déchetterie intercommunale est ouverte du lundi au samedi de 9h à 12h et de 14h à 18h (17h en hiver du 1er novembre au 31 mars). Elle est fermée les dimanches et jours fériés. L'accès est réservé aux habitants de la communauté de communes sur présentation d'un justificatif de domicile et d'une pièce d'identité.",
+      "keywords": ["déchetterie", "horaires", "ouverture", "accès"]
+    },
+    {
+      "id": "DEC007",
+      "category": "dechets_environnement",
+      "question": "Comment se débarrasser d'un encombrant ?",
+      "answer": "Les encombrants (meubles, électroménager, matelas) peuvent être déposés à la déchetterie gratuitement. Pour les personnes à mobilité réduite, une collecte à domicile est possible sur rendez-vous au 02 XX XX XX XX. Les électroménagers peuvent aussi être repris par le vendeur lors d'un nouvel achat (obligation légale).",
+      "keywords": ["encombrants", "meubles", "électroménager", "enlèvement", "collecte"]
+    },
+    {
+      "id": "TRA001",
+      "category": "transports",
+      "question": "Comment obtenir une carte de transport scolaire ?",
+      "answer": "L'inscription au transport scolaire se fait en ligne sur le site de la Région Centre-Val de Loire avant le 15 juillet pour la rentrée de septembre. La participation familiale varie selon le quotient familial (de 0€ à 200€ par an). Les élèves doivent résider à plus de 3km de leur établissement pour en bénéficier.",
+      "keywords": ["transport", "scolaire", "car", "bus", "inscription"]
+    },
+    {
+      "id": "TRA002",
+      "category": "transports",
+      "question": "Existe-t-il un service de transport à la demande ?",
+      "answer": "Oui, le service Résa'Loire est un transport à la demande disponible pour les zones non desservies par les lignes régulières. Réservation obligatoire 48h à l'avance au 02 XX XX XX XX ou sur l'application mobile. Tarif : 2€ le trajet. Le service fonctionne du lundi au samedi de 7h à 19h.",
+      "keywords": ["transport", "demande", "réservation", "TAD", "Résa'Loire"]
+    },
+    {
+      "id": "TRA003",
+      "category": "transports",
+      "question": "Où trouver les horaires de bus ?",
+      "answer": "Les horaires de bus sont disponibles sur le site rémi (remi-centrevaldeloire.fr), à l'office de tourisme, et aux arrêts de bus. L'application Rémi permet de consulter les horaires en temps réel et de calculer votre itinéraire. Les fiches horaires papier sont disponibles en mairie.",
+      "keywords": ["bus", "horaires", "ligne", "transports en commun"]
+    },
+    {
+      "id": "TRA004",
+      "category": "transports",
+      "question": "Comment signaler un nid-de-poule sur la route ?",
+      "answer": "Pour signaler une dégradation de la voirie (nid-de-poule, affaissement, panneau endommagé), utilisez le formulaire en ligne sur notre site ou appelez les services techniques au 02 XX XX XX XX. Pour les routes départementales, contactez le Conseil Départemental. Pour les routes nationales, signalez via l'application \"DansMaRue\" ou au 3975.",
+      "keywords": ["route", "nid-de-poule", "voirie", "signalement", "dégradation"]
+    },
+    {
+      "id": "ENF001",
+      "category": "petite_enfance",
+      "question": "Comment inscrire mon enfant à la crèche ?",
+      "answer": "Les inscriptions en crèche se font auprès du Relais Petite Enfance. Constituez un dossier avec : pièces d'identité des parents, livret de famille, justificatif de domicile, justificatifs de revenus, carnet de santé de l'enfant. Les demandes sont étudiées en commission d'attribution selon des critères sociaux et de disponibilité.",
+      "keywords": ["crèche", "inscription", "bébé", "garde", "petite enfance"]
+    },
+    {
+      "id": "ENF002",
+      "category": "petite_enfance",
+      "question": "Quels sont les tarifs de la cantine scolaire ?",
+      "answer": "Les tarifs de la cantine sont calculés selon le quotient familial CAF : Tranche 1 (QF<500) : 1,50€, Tranche 2 (QF 500-800) : 2,80€, Tranche 3 (QF 800-1200) : 4,20€, Tranche 4 (QF>1200) : 5,50€. L'inscription se fait en mairie avec un justificatif CAF. Le paiement est mensuel à terme échu.",
+      "keywords": ["cantine", "tarif", "restaurant scolaire", "repas", "prix"]
+    },
+    {
+      "id": "ENF003",
+      "category": "petite_enfance",
+      "question": "Comment inscrire mon enfant au centre de loisirs ?",
+      "answer": "L'inscription au centre de loisirs (ALSH) se fait en mairie ou en ligne via le portail famille. Documents : fiche sanitaire, attestation d'assurance, justificatif CAF pour le tarif. Les inscriptions pour les vacances ouvrent 1 mois avant. Tarif journée selon QF : de 5€ à 25€ (repas inclus).",
+      "keywords": ["centre de loisirs", "ALSH", "vacances", "périscolaire", "inscription"]
+    },
+    {
+      "id": "ENF004",
+      "category": "petite_enfance",
+      "question": "À quel âge inscrire mon enfant à l'école maternelle ?",
+      "answer": "L'instruction est obligatoire dès 3 ans. L'inscription en maternelle se fait en mairie de janvier à mars pour la rentrée de septembre. Documents : livret de famille, justificatif de domicile, carnet de santé (vaccinations à jour). La mairie délivre un certificat d'inscription à présenter à l'école.",
+      "keywords": ["école", "maternelle", "inscription", "âge", "rentrée"]
+    },
+    {
+      "id": "ENF005",
+      "category": "petite_enfance",
+      "question": "Comment obtenir une place en accueil périscolaire ?",
+      "answer": "L'accueil périscolaire (matin 7h30-8h30 et soir 16h30-18h30) est accessible sur inscription via le portail famille. L'inscription est annuelle mais les réservations sont modifiables chaque semaine. Tarif horaire selon QF : de 0,50€ à 2€. Un goûter est fourni pour l'accueil du soir.",
+      "keywords": ["périscolaire", "garderie", "accueil", "matin", "soir"]
+    },
+    {
+      "id": "SOC001",
+      "category": "social_solidarite",
+      "question": "Comment faire une demande d'aide sociale ?",
+      "answer": "Les demandes d'aide sociale se font auprès du CCAS (Centre Communal d'Action Sociale) en mairie. Un travailleur social vous recevra sur rendez-vous pour évaluer votre situation et vous orienter vers les aides adaptées : aide alimentaire, FSL, aide au paiement des factures. Permanence le mardi et jeudi de 9h à 12h.",
+      "keywords": ["aide sociale", "CCAS", "difficulté", "assistance", "précarité"]
+    },
+    {
+      "id": "SOC002",
+      "category": "social_solidarite",
+      "question": "Comment bénéficier du portage de repas à domicile ?",
+      "answer": "Le portage de repas à domicile est destiné aux personnes âgées de plus de 65 ans ou en situation de handicap ne pouvant pas préparer leurs repas. Contactez le CCAS pour une évaluation. Tarif selon ressources : de 4€ à 9€ le repas. Livraison du lundi au vendredi entre 11h30 et 13h.",
+      "keywords": ["portage", "repas", "domicile", "personnes âgées", "livraison"]
+    },
+    {
+      "id": "SOC003",
+      "category": "social_solidarite",
+      "question": "Comment obtenir la carte d'invalidité ou CMI ?",
+      "answer": "La Carte Mobilité Inclusion (CMI) remplace les anciennes cartes d'invalidité, de priorité et de stationnement. La demande se fait auprès de la MDPH (Maison Départementale des Personnes Handicapées) via le formulaire Cerfa 15692. Le délai de traitement est de 4 à 6 mois. La carte est gratuite.",
+      "keywords": ["CMI", "invalidité", "handicap", "carte", "MDPH"]
+    },
+    {
+      "id": "SOC004",
+      "category": "social_solidarite",
+      "question": "Existe-t-il une aide pour les factures d'énergie ?",
+      "answer": "Le Fonds de Solidarité Logement (FSL) peut prendre en charge une partie de vos factures d'énergie en cas de difficulté. Le chèque énergie est envoyé automatiquement aux foyers modestes. Contactez le CCAS ou un conseiller France Services pour vérifier votre éligibilité et constituer un dossier FSL.",
+      "keywords": ["énergie", "facture", "électricité", "gaz", "aide", "FSL"]
+    },
+    {
+      "id": "SOC005",
+      "category": "social_solidarite",
+      "question": "Comment contacter l'assistante sociale ?",
+      "answer": "L'assistante sociale du secteur tient une permanence au CCAS le mardi de 9h à 12h et le jeudi de 14h à 17h. Prenez rendez-vous au 02 XX XX XX XX ou à l'accueil de la mairie. Les entretiens sont confidentiels. Une visite à domicile peut être organisée pour les personnes à mobilité réduite.",
+      "keywords": ["assistante sociale", "rendez-vous", "permanence", "CCAS"]
+    },
+    {
+      "id": "SOC006",
+      "category": "social_solidarite",
+      "question": "Comment faire une demande de RSA ?",
+      "answer": "La demande de RSA (Revenu de Solidarité Active) se fait en ligne sur caf.fr, en agence CAF, ou avec l'aide de France Services. Vous devez avoir plus de 25 ans (ou moins avec un enfant à charge) et résider en France de façon stable. Le montant dépend de la composition du foyer et des ressources.",
+      "keywords": ["RSA", "revenu", "solidarité", "CAF", "allocation"]
+    },
+    {
+      "id": "ASS001",
+      "category": "vie_associative",
+      "question": "Comment créer une association ?",
+      "answer": "Pour créer une association loi 1901, déposez une déclaration au greffe des associations (préfecture ou sous-préfecture) ou en ligne sur le-compte-asso.associations.gouv.fr. Fournissez : procès-verbal de l'assemblée constitutive, statuts signés, liste des dirigeants. La publication au Journal Officiel coûte 44€. L'association existe dès le dépôt.",
+      "keywords": ["association", "créer", "création", "statuts", "déclaration"]
+    },
+    {
+      "id": "ASS002",
+      "category": "vie_associative",
+      "question": "Comment demander une subvention pour mon association ?",
+      "answer": "Les demandes de subvention se font via le formulaire Cerfa 12156 à déposer en mairie avant le 31 octobre pour l'année suivante. Joignez : statuts, rapport d'activité, comptes du dernier exercice, budget prévisionnel, RIB. Les subventions sont attribuées en conseil municipal selon les critères d'intérêt local et de capacité financière.",
+      "keywords": ["subvention", "association", "aide", "financement", "demande"]
+    },
+    {
+      "id": "ASS003",
+      "category": "vie_associative",
+      "question": "Comment réserver une salle municipale ?",
+      "answer": "La réservation des salles municipales se fait en mairie auprès du service vie associative. Complétez le formulaire de demande au moins 3 semaines à l'avance. Tarifs : gratuit pour les associations locales (activités régulières), de 50€ à 300€ pour les événements ponctuels selon la salle. Un état des lieux et une caution sont demandés.",
+      "keywords": ["salle", "réservation", "location", "municipale", "événement"]
+    },
+    {
+      "id": "ASS004",
+      "category": "vie_associative",
+      "question": "Comment déclarer une manifestation sur la voie publique ?",
+      "answer": "Toute manifestation sur la voie publique (vide-grenier, course, défilé) doit être déclarée en mairie au moins 1 mois avant. Fournissez : descriptif de l'événement, plan du parcours ou d'implantation, attestation d'assurance, nombre de participants estimé. Une autorisation d'occupation temporaire du domaine public sera délivrée.",
+      "keywords": ["manifestation", "événement", "déclaration", "voie publique", "autorisation"]
+    },
+    {
+      "id": "ELE001",
+      "category": "elections",
+      "question": "Comment s'inscrire sur les listes électorales ?",
+      "answer": "L'inscription sur les listes électorales se fait en ligne sur service-public.fr, en mairie, ou par courrier. Fournissez une pièce d'identité et un justificatif de domicile. L'inscription est possible toute l'année mais doit être faite au plus tard le 6ème vendredi précédant le scrutin. Les jeunes de 18 ans sont inscrits automatiquement.",
+      "keywords": ["inscription", "électorale", "vote", "élections", "listes"]
+    },
+    {
+      "id": "ELE002",
+      "category": "elections",
+      "question": "Comment faire une procuration pour voter ?",
+      "answer": "La procuration se fait en ligne sur maprocuration.gouv.fr puis validation dans un commissariat, une gendarmerie ou un consulat. Vous pouvez aussi vous y rendre directement avec votre pièce d'identité. Le mandataire doit être inscrit dans la même commune. Une personne peut détenir 1 procuration établie en France (3 si établie à l'étranger).",
+      "keywords": ["procuration", "vote", "mandataire", "absence", "élections"]
+    },
+    {
+      "id": "ELE003",
+      "category": "elections",
+      "question": "Où se trouve mon bureau de vote ?",
+      "answer": "Votre bureau de vote est indiqué sur votre carte électorale. Vous pouvez aussi le retrouver sur service-public.fr rubrique \"Élections\" en renseignant votre commune. En cas de déménagement dans la commune, pensez à signaler votre nouvelle adresse en mairie pour être rattaché au bon bureau.",
+      "keywords": ["bureau de vote", "où voter", "carte électorale", "localisation"]
+    },
+    {
+      "id": "ELE004",
+      "category": "elections",
+      "question": "Quelles pièces d'identité pour voter ?",
+      "answer": "Pour voter, présentez une pièce d'identité avec photo parmi : carte nationale d'identité (même périmée), passeport (même périmé), carte vitale avec photo, permis de conduire, carte d'invalidité avec photo. Dans les communes de moins de 1000 habitants, la carte électorale suffit.",
+      "keywords": ["identité", "vote", "pièce", "document", "bureau"]
+    },
+    {
+      "id": "LOG001",
+      "category": "logement",
+      "question": "Comment faire une demande de logement social ?",
+      "answer": "La demande de logement social se fait en ligne sur demande-logement-social.gouv.fr ou en mairie. Vous recevrez un numéro unique départemental valable 1 an (renouvelable). Documents : pièces d'identité, avis d'imposition, justificatifs de revenus. Le délai d'attente varie selon les zones : de quelques mois à plusieurs années.",
+      "keywords": ["logement social", "HLM", "demande", "attribution", "numéro unique"]
+    },
+    {
+      "id": "LOG002",
+      "category": "logement",
+      "question": "Quelles aides pour rénover mon logement ?",
+      "answer": "Plusieurs aides existent pour la rénovation : MaPrimeRénov' (revenus modestes à intermédiaires), CEE (Certificats d'Économie d'Énergie), éco-PTZ (prêt à taux zéro), aides de l'Anah. Contactez France Rénov' au 0 808 800 700 (gratuit) ou le conseiller de l'Espace Info Énergie pour un accompagnement personnalisé gratuit.",
+      "keywords": ["rénovation", "aides", "travaux", "MaPrimeRénov", "énergie"]
+    },
+    {
+      "id": "LOG003",
+      "category": "logement",
+      "question": "Comment signaler un logement insalubre ?",
+      "answer": "Pour signaler un logement insalubre (humidité, absence de chauffage, nuisibles), contactez l'ARS (Agence Régionale de Santé) ou le service hygiène de la commune. Un agent visitera le logement pour constater les désordres. Si l'insalubrité est avérée, le propriétaire sera mis en demeure de réaliser les travaux.",
+      "keywords": ["insalubrité", "logement", "signalement", "hygiène", "indécent"]
+    },
+    {
+      "id": "CUL001",
+      "category": "culture_sport",
+      "question": "Comment s'inscrire à la médiathèque ?",
+      "answer": "L'inscription à la médiathèque est gratuite pour les habitants de la communauté de communes. Présentez-vous avec une pièce d'identité et un justificatif de domicile. Pour les mineurs, la présence d'un parent est nécessaire. Vous pourrez emprunter 10 documents pour 4 semaines, renouvelables en ligne.",
+      "keywords": ["médiathèque", "bibliothèque", "inscription", "emprunt", "livre"]
+    },
+    {
+      "id": "CUL002",
+      "category": "culture_sport",
+      "question": "Comment inscrire mon enfant au conservatoire ?",
+      "answer": "Les inscriptions au conservatoire de musique et de danse se font en juin pour la rentrée de septembre. Remplissez le dossier en ligne sur le site du conservatoire. Les tarifs sont calculés selon le quotient familial (de 80€ à 400€/an). Un instrument peut être loué pour les débutants (à partir de 50€/an).",
+      "keywords": ["conservatoire", "musique", "danse", "inscription", "cours"]
+    },
+    {
+      "id": "CUL003",
+      "category": "culture_sport",
+      "question": "Quels sont les horaires de la piscine ?",
+      "answer": "La piscine intercommunale est ouverte : lundi 12h-20h, mardi à vendredi 10h-20h, samedi et dimanche 9h-18h. Horaires aménagés pendant les vacances scolaires (ouverture à 9h en semaine). Tarifs : adulte 4,50€, enfant 3€, carnet 10 entrées 35€/25€. Gratuit pour les moins de 3 ans accompagnés.",
+      "keywords": ["piscine", "horaires", "natation", "tarif", "ouverture"]
+    },
+    {
+      "id": "CUL004",
+      "category": "culture_sport",
+      "question": "Comment réserver un court de tennis ?",
+      "answer": "La réservation des courts de tennis municipaux se fait en ligne via l'application Raquette ou au guichet de la maison des sports. Tarif : 8€/h (4€ pour les adhérents du club). Les créneaux sont disponibles de 8h à 22h. L'éclairage nocturne est inclus dans le tarif.",
+      "keywords": ["tennis", "réservation", "court", "sport", "terrain"]
+    },
+    {
+      "id": "CUL005",
+      "category": "culture_sport",
+      "question": "Quel est le programme des événements culturels ?",
+      "answer": "Le programme culturel de la saison est disponible à l'office de tourisme, en mairie, et sur le site internet de la communauté de communes. Vous pouvez vous abonner à la newsletter mensuelle pour recevoir les informations. Les réservations pour les spectacles se font à la billetterie de la salle des fêtes ou en ligne.",
+      "keywords": ["événements", "spectacles", "programme", "culture", "concert"]
+    },
+    {
+      "id": "FIS001",
+      "category": "fiscalite",
+      "question": "Comment payer la taxe foncière ?",
+      "answer": "La taxe foncière peut être payée en ligne sur impots.gouv.fr (date limite mi-octobre + 5 jours), par prélèvement mensuel ou à l'échéance, par chèque, TIP SEPA, ou en espèces au centre des finances publiques (max 300€). La mensualisation permet d'étaler le paiement sur 10 mois sans frais.",
+      "keywords": ["taxe foncière", "paiement", "impôt", "propriétaire"]
+    },
+    {
+      "id": "FIS002",
+      "category": "fiscalite",
+      "question": "Comment contester ma taxe d'habitation ?",
+      "answer": "La taxe d'habitation sur les résidences principales est supprimée depuis 2023. Pour les résidences secondaires ou locaux vacants, vous pouvez contester le montant via votre espace personnel sur impots.gouv.fr, rubrique \"Messagerie sécurisée\", ou par courrier au centre des impôts. Joignez tout justificatif utile.",
+      "keywords": ["taxe habitation", "contestation", "réclamation", "impôt"]
+    },
+    {
+      "id": "FIS003",
+      "category": "fiscalite",
+      "question": "Comment déclarer un changement d'adresse aux impôts ?",
+      "answer": "Le changement d'adresse se déclare en ligne sur impots.gouv.fr rubrique \"Gérer mon profil\" ou lors de votre déclaration de revenus annuelle. Vous pouvez aussi utiliser le service \"Je change d'adresse\" sur service-public.fr qui prévient plusieurs administrations en une seule démarche.",
+      "keywords": ["changement adresse", "impôts", "déménagement", "déclaration"]
+    },
+    {
+      "id": "EAU001",
+      "category": "eau_assainissement",
+      "question": "Comment ouvrir un compteur d'eau ?",
+      "answer": "Pour ouvrir un compteur d'eau lors d'un emménagement, contactez le service des eaux de la communauté de communes au 02 XX XX XX XX ou remplissez le formulaire en ligne. Fournissez : nom de l'ancien occupant si connu, relevé du compteur à votre arrivée, RIB. La mise en service est facturée 30€.",
+      "keywords": ["compteur eau", "ouverture", "abonnement", "emménagement"]
+    },
+    {
+      "id": "EAU002",
+      "category": "eau_assainissement",
+      "question": "Comment signaler une fuite d'eau sur la voie publique ?",
+      "answer": "Pour signaler une fuite sur la voie publique ou une canalisation du réseau, appelez le service des eaux au 02 XX XX XX XX (urgences 24h/24 au 02 XX XX XX XX). Localisez précisément la fuite (adresse, repère visuel). En cas de fuite importante, le service technique intervient sous 2h.",
+      "keywords": ["fuite", "eau", "canalisation", "urgence", "signalement"]
+    },
+    {
+      "id": "EAU003",
+      "category": "eau_assainissement",
+      "question": "Comment est calculé le prix de l'eau ?",
+      "answer": "La facture d'eau comprend : l'abonnement fixe (part communale), le prix du m³ consommé (environ 4€/m³ dont eau potable et assainissement), les taxes et redevances (agence de l'eau, TVA). Les tarifs sont votés chaque année par le conseil communautaire. Une facture détaillée est disponible sur demande.",
+      "keywords": ["prix eau", "facture", "tarif", "m3", "calcul"]
+    },
+    {
+      "id": "EAU004",
+      "category": "eau_assainissement",
+      "question": "Comment vérifier la qualité de l'eau du robinet ?",
+      "answer": "L'eau du robinet est contrôlée régulièrement par l'ARS. Les résultats d'analyses sont affichés en mairie et disponibles sur le site du ministère de la santé (solidarites-sante.gouv.fr rubrique \"Qualité de l'eau\"). Un bilan annuel est joint à votre facture. L'eau de notre territoire est conforme aux normes sanitaires.",
+      "keywords": ["qualité eau", "potable", "analyse", "robinet", "contrôle"]
+    },
+    {
+      "id": "EAU005",
+      "category": "eau_assainissement",
+      "question": "Mon assainissement est-il collectif ou individuel ?",
+      "answer": "Consultez le zonage d'assainissement disponible en mairie ou sur le site de la communauté de communes. En zone d'assainissement collectif, vous êtes raccordé au réseau public (obligatoire). En zone non collective, vous devez avoir une installation autonome (fosse) contrôlée par le SPANC tous les 4 à 10 ans.",
+      "keywords": ["assainissement", "fosse", "collectif", "individuel", "SPANC"]
+    },
+    {
+      "id": "DIV001",
+      "category": "etat_civil",
+      "question": "Comment obtenir un extrait de casier judiciaire ?",
+      "answer": "Le bulletin n°3 du casier judiciaire (seul accessible au particulier) se demande gratuitement en ligne sur casier-judiciaire.justice.gouv.fr. Vous recevrez le document par courrier sous 2 semaines. Pour les personnes nées à l'étranger, la demande se fait par courrier au Casier Judiciaire National à Nantes.",
+      "keywords": ["casier judiciaire", "extrait", "bulletin", "certificat"]
+    },
+    {
+      "id": "DIV002",
+      "category": "etat_civil",
+      "question": "Comment légaliser une signature ?",
+      "answer": "La légalisation de signature (certifier qu'une signature est bien celle de la personne) se fait en mairie. Présentez-vous avec le document à légaliser, une pièce d'identité, et signez devant l'agent. Ce service est gratuit. Attention : certains documents (notariés, actes étrangers) nécessitent une apostille auprès du tribunal.",
+      "keywords": ["légalisation", "signature", "certification", "authentification"]
+    },
+    {
+      "id": "DIV003",
+      "category": "etat_civil",
+      "question": "Comment obtenir une copie de permis de conduire ?",
+      "answer": "En cas de perte ou vol du permis de conduire, faites la demande de duplicata en ligne sur le site de l'ANTS (ants.gouv.fr). Vous aurez besoin : d'une photo numérique, d'un justificatif de domicile, et d'une déclaration de perte ou d'un récépissé de dépôt de plainte. Coût : 25€. Délai : 2 à 3 semaines.",
+      "keywords": ["permis conduire", "duplicata", "perte", "vol", "renouvellement"]
+    },
+    {
+      "id": "DIV004",
+      "category": "etat_civil",
+      "question": "Comment faire une demande de carte d'identité ?",
+      "answer": "La demande de carte d'identité se fait sur rendez-vous dans une mairie équipée d'un dispositif de recueil. Pré-demande en ligne sur ants.gouv.fr recommandée. Documents : photo d'identité aux normes, justificatif de domicile, ancien titre si renouvellement. Délai : 2 à 4 semaines. La carte est gratuite (25€ si perte ou vol).",
+      "keywords": ["carte identité", "CNI", "demande", "renouvellement", "rendez-vous"]
+    },
+    {
+      "id": "DIV005",
+      "category": "etat_civil",
+      "question": "Comment faire une demande de passeport ?",
+      "answer": "La demande de passeport se fait sur rendez-vous dans une mairie équipée. Pré-demande en ligne sur ants.gouv.fr. Documents : photo d'identité aux normes, justificatif de domicile, timbre fiscal (86€ adulte, 42€ 15-17 ans, 17€ moins de 15 ans). Délai : 2 à 6 semaines selon la période.",
+      "keywords": ["passeport", "demande", "voyage", "timbre fiscal", "rendez-vous"]
+    },
+    {
+      "id": "DIV006",
+      "category": "etat_civil",
+      "question": "Comment faire certifier conforme un document ?",
+      "answer": "La certification conforme de copies de documents a été supprimée en France depuis 2001. Les administrations françaises n'ont pas le droit de l'exiger. Pour les démarches à l'étranger, la certification peut être faite en mairie ou par un notaire. Présentez l'original et la copie à certifier.",
+      "keywords": ["certification", "conforme", "copie", "document", "original"]
+    },
+    {
+      "id": "DIV007",
+      "category": "transports",
+      "question": "Comment obtenir un certificat de non-gage ?",
+      "answer": "Le certificat de situation administrative (non-gage) s'obtient gratuitement et immédiatement en ligne sur le site de l'ANTS (ants.gouv.fr) ou sur Histovec (histovec.interieur.gouv.fr). Ce document est obligatoire lors de la vente d'un véhicule. Il indique si le véhicule est gagé ou fait l'objet d'une opposition.",
+      "keywords": ["non-gage", "certificat", "vente", "véhicule", "situation administrative"]
+    },
+    {
+      "id": "DIV008",
+      "category": "transports",
+      "question": "Comment immatriculer un véhicule ?",
+      "answer": "L'immatriculation d'un véhicule se fait en ligne sur le site de l'ANTS (ants.gouv.fr) ou chez un professionnel habilité (garage, concessionnaire). Documents : formulaire Cerfa, justificatif de domicile, pièce d'identité, contrôle technique si plus de 4 ans, certificat de cession si occasion. Le certificat provisoire est valable 1 mois.",
+      "keywords": ["immatriculation", "carte grise", "véhicule", "ANTS", "plaque"]
+    }
+  ]
+}

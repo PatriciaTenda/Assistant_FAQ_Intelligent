@@ -93,3 +93,21 @@ Le projet suit les étapes suivantes :
         README.md
         gitignore
 ```
+## Installation des dépendances
+Pour installer les dépendances nécessaires, exécutez la commande suivante dans le répertoire `src` :
+- Version python utilisée dans le projet: 3.10.11
+- Set up d'un environnement virtuel:
+```bash
+    python -m venv venv
+    source venv\Scripts\activate # Sur macOS/Linux: venv/bin/activate
+```
+```bash
+    pip freeze > requirements.txt # Fichier requirements.txt à créer avec les dépendances nécessaires
+    pip install --upgrade huggingface_hub # librairie pour interagir avec HuggingFace
+    pip install fastapi[uvicorn standard] # pour l'API REST
+    pip install dotenv # pour gérer les variables d'environnement
+    pip install -U sentence-transformers # pour la recherche sémantique
+    pip install pandas # pour la manipulation des données
+    
+    
+```

@@ -107,7 +107,5 @@ Pour installer les dépendances nécessaires, exécutez la commande suivante dan
     pip install fastapi[uvicorn standard] # pour l'API REST
     pip install dotenv # pour gérer les variables d'environnement
     pip install -U sentence-transformers # pour la recherche sémantique
-    pip install pandas # pour la manipulation des données
-    
-    
+    pip install pandas # pour la manipulation des données    
 ```

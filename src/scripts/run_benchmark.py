@@ -16,7 +16,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 # Ajouter le repertoire parent au path pour les imports
-sys.path.insert(0, str(Path(__file__).parent.parent))
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 # Strategies du dossier Assistant_FAQ_Intelligent
 from src.strategies.strategy_A_LLM import StrategyALLM
@@ -286,7 +286,7 @@ def _resolve_default_paths(project_root: Path) -> Dict[str, Path]:
 
 
 def main() -> None:
-    project_root = Path(__file__).parent.parent
+    project_root = Path(__file__).resolve().parents[2]
     defaults = _resolve_default_paths(project_root)
 
     parser = argparse.ArgumentParser(description="Lancer le benchmark FAQ")

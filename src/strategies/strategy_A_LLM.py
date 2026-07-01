@@ -11,10 +11,10 @@ from pathlib import Path
 from dotenv import load_dotenv
 from huggingface_hub import InferenceClient
 # Configurer le chemin pour le module et l'ajouter dans le repertoire parent
-root_path = Path(__file__).resolve().parents[1]
+root_path = Path(__file__).resolve().parents[2]
 print(f"Root path: {root_path}")
 sys.path.insert(0, str(root_path))
-from strategies.base import BaseStrategy, FAQResponse  # noqa: E402
+from src.strategies.base import BaseStrategy, FAQResponse  # noqa: E402
 
 
 # Chargement des variables d'environnement

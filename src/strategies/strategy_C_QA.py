@@ -4,18 +4,26 @@ Cette stratégie combine la recherche de FAQ similaires avec une extraction dire
 """
 
 import os
+import sys
 from dotenv import load_dotenv
 import logging
 from typing import Dict, Any, List
 from sentence_transformers import SentenceTransformer, util
 from transformers import pipeline
+from pathlib import Path
+root_path = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(root_path))
 
-from .base import BaseStrategy, FAQResponse
+from .base import BaseStrategy, FAQResponse  # noqa: E402
 
 # Chargement des variables d'environnement
 load_dotenv()
 
 # Configuration du logger
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
 logger = logging.getLogger(__name__)
 
 class StrategyCQA(BaseStrategy):

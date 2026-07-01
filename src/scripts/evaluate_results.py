@@ -4,17 +4,17 @@ Script d'évaluation des résultats de benchmark.
 Ce script analyse les résultats du benchmark et calcule les métriques
 d'évaluation pour chaque stratégie selon la grille définie.
 
-Auteur: [Votre nom]
-Date: [Date]
+Auteur: Patricia
+Date: 27/06/2026
 """
-
-import json
-import csv
+import unicodedata
+import json 
+import csv  # noqa: F401
 import logging
 from pathlib import Path
-from typing import Dict, List, Any, Optional, Tuple
+from typing import Dict, List, Any, Optional, Tuple # noqa: F401
 from dataclasses import dataclass
-from collections import defaultdict
+from collections import defaultdict # noqa: F401
 
 # Configuration du logging
 logging.basicConfig(
@@ -41,6 +41,15 @@ LATENCY_THRESHOLDS = {
     # > 2000ms = score minimal
 }
 
+# Liste des phrases d'aveu d'ignorance (hors sujet)
+EXPRESSIONS_IGNORANCE = [
+    "je ne sais pas",
+    "je ne peux pas répondre",
+    "hors de mon périmètre",
+    "je n'ai pas d'information",
+    "désolé, je ne peux pas",
+    # ...
+]
 
 @dataclass
 class QuestionEvaluation:
@@ -81,7 +90,7 @@ class BenchmarkEvaluator:
         self.benchmark_results_path = Path(benchmark_results_path)
         self.golden_set_path = Path(golden_set_path)
         self.output_dir = Path(output_dir)
-        self.output_dir.mkdir(parents=True, exist_ok=True)
+        #self.output_dir.mkdir(parents=True, exist_ok=True)
         
         # Charger les données
         self.benchmark_results = self._load_benchmark_results()
@@ -100,13 +109,29 @@ class BenchmarkEvaluator:
         Returns:
             Liste des résultats du benchmark
             
+         Raises:
+            FileNotFoundError: si le fichier de résultats est introuvable
+            ValueError: si le contenu n'est pas un JSON valide
+            
         TODO:
             1. Charger le fichier JSON des résultats
             2. Extraire la liste des résultats
             3. Retourner la liste
         """
-        # TODO: Implémenter le chargement
-        raise NotImplementedError("Implémenter _load_benchmark_results")
+        if not self.benchmark_results_path.exists():
+            logger.error(f"Fichier de résultats introuvables: {self.benchmark_results_path}")
+            raise FileNotFoundError(f"Fichier de résultats introuvables: {self.benchmark_results_path}")
+        try:
+            # 1. Charger le fichier JSON des résultats
+            with open(self.benchmark_results_path, "r", encoding="utf-8") as f:
+                data = json.load(f)    
+            # 2. Extraire la liste des résultats  
+                results = data.get("results", [])
+            # 3. Retourner la liste
+            return results
+        except json.JSONDecodeError as e:
+            logger.error(f"Erreur lors du chargement des résultats: {e}")
+            raise ValueError(f"Le contenu n'est pas un json valide : {e}") from e
     
     def _load_golden_set(self) -> List[Dict[str, Any]]:
         """
@@ -114,9 +139,44 @@ class BenchmarkEvaluator:
         
         Returns:
             Liste des questions du golden set
+        
+        Raises:
+            FileNotFoundError: si le fichier Golden_Set.json est introuvable
+            ValueError: si le contenu n'est pas un JSON valide
         """
-        # TODO: Implémenter le chargement
-        raise NotImplementedError("Implémenter _load_golden_set")
+        if not self.golden_set_path.exists():
+            logger.error(f"Fichier golden_set introuvable: {self.golden_set_path}")
+            raise FileNotFoundError(f"Fichier golden_set introuvable: {self.golden_set_path}")
+        try:   
+            with open(self.golden_set_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                golden_set = data.get("golden_set", [])
+            return golden_set
+        except json.JSONDecodeError as e:
+            logger.error(f"Erreur lors du chargement du fichier golden_set: {e}")
+            raise ValueError(f"Le contenu du golden_set n'est pas un json valide : {e}") from e
+        
+    
+    def _normalize_text(self, text: str)-> str:
+        """
+            Cette methode normalise les textes pour faciliter la comparaison.
+            args:
+                text: texte à normaliser
+            returns:
+                texte normalisé (miniscule, sans accents)
+        
+        """
+        # mettre en miniscule
+        text = text.lower()
+        # Décomposer les carractères accentués(lettre + accents)
+        text = unicodedata.normalize("NFD", text)
+        # Enlever les accents
+        # Mn = Mark non spacing, 
+        # c'est à dire les marks qui ne prennent pas de place (ex: accents)
+        text_filtered = [c for c in text if unicodedata.category(c) != "Mn"]
+        return "".join(text_filtered) 
+        
+       
     
     def evaluate_exactitude(
         self, 
@@ -147,9 +207,42 @@ class BenchmarkEvaluator:
             - Si expected_keywords est vide, retourner 1.0 (pas de vérification)
             - La recherche doit être insensible à la casse
         """
-        # TODO: Implémenter l'évaluation d'exactitude
-        raise NotImplementedError("Implémenter evaluate_exactitude")
-    
+                
+        if not expected_keywords:
+            score = 1.0
+            details = {
+                        "keywords_found" : [],
+                        "keywords_missing" : [],
+                        "score_exactitude" : score
+                }
+            return score, details
+                
+        # 1. Normaliser la réponse (minuscules, sans accents si besoin)
+        answer_normalized = self._normalize_text(answer)
+        expected_keywords_normalized = [self._normalize_text(k) for k in expected_keywords]
+        
+        # 2. Pour chaque mot-clé attendu, vérifier s'il est présent dans la réponse
+        keywords_found = []
+        keywords_missing = []
+        for keywords in expected_keywords_normalized:
+            if keywords in answer_normalized:
+                keywords_found.append(keywords)                    
+            else:
+                keywords_missing.append(keywords)
+        
+
+        # 3. Calculer le score: nb_trouvés / nb_attendus
+        score = len(keywords_found) / len(expected_keywords_normalized)
+        details = {
+                    "keywords_found" : keywords_found,
+                    "keywords_missing" : keywords_missing,
+                    "score_exactitude" : score
+                }
+        
+        # 4. Retourner le score et les détails (mots trouvés/manquants)
+        return (score, details)
+        
+        
     def evaluate_pertinence(
         self, 
         answer: str, 
@@ -184,8 +277,68 @@ class BenchmarkEvaluator:
             - Réponse très longue mais sans rapport = score moyen
             - Utiliser la similarité lexicale comme indicateur
         """
-        # TODO: Implémenter l'évaluation de pertinence
-        raise NotImplementedError("Implémenter evaluate_pertinence")
+        
+        answer_clean = answer.strip()
+        answer_normalized = self._normalize_text(answer_clean)
+        question_normalized = self._normalize_text(question)
+        
+        expression_normalized = [
+                            self._normalize_text(expr) 
+                            for expr in EXPRESSIONS_IGNORANCE
+        ]
+        
+        
+        # 1. cas des réponses pour des questions de type "hors_sujet"    
+        if question_type == "hors_sujet" :
+            
+            has_ignorance = any(expr in answer_normalized for expr in expression_normalized)
+            
+            score = 1.0 if has_ignorance else 0.0
+            
+            return score, {"pertinence" : ("aveu d'ignorance détecté" 
+                                           if has_ignorance 
+                                           else "réponse avec contenu et non pertinente"),
+                           "has_ignorance" : has_ignorance,
+                           "score_pertinence" : score                        
+                        }
+                    
+                 
+        # 2. cas des réponses pour des questions de type different de "hors_sujet"
+        # Vérifier que la réponse n'est pas vide
+        if not answer_clean:
+            return 0.0, {"pertinence" : "Réponse vide",
+                            "score_pertinence": 0.0}
+        
+        # Vérifier la longueur minimale (ex: > 20 caractères)
+        if len(answer_clean) < 20 :
+            score_longueur = len(answer_clean)/20       
+        else :
+            score_longueur = min(len(answer_clean)/20, 1.0) 
+                    
+        
+        # Vérifier la présence de mots de la question dans la réponse
+        question_words = set(question_normalized.split())
+        answer_words = set(answer_normalized.split())
+        
+        if not question_words:
+            score_lexical = 0.0
+            words_found = []
+        else:
+            words_found = sorted(question_words & answer_words)
+            score_lexical = len(words_found) / len(question_words)
+    
+                    
+        # 3. Retourner le score et les détails
+        score = (score_longueur + score_lexical) / 2
+        details = {
+            "pertinence" : "Score moyen basé sur longueur et similarité lexicale",
+            "score_longueur": score_longueur,
+            "score_lexical": score_lexical,
+            "Mots_question_trouvés" : words_found,
+            "score_pertinence": score
+        }                    
+        return score, details
+    
     
     def evaluate_hallucination(
         self, 

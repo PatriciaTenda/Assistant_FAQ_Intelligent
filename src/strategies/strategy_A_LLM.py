@@ -4,18 +4,19 @@ Cette stratégie utilise uniquement un modèle de langage (LLM)
 pour générer les réponses aux questions des citoyens.
 
 """
+import logging
 import os
 import sys
-import logging
 from pathlib import Path
+
 from dotenv import load_dotenv
 from huggingface_hub import InferenceClient
+
 # Configurer le chemin pour le module et l'ajouter dans le repertoire parent
 root_path = Path(__file__).resolve().parents[2]
 print(f"Root path: {root_path}")
 sys.path.insert(0, str(root_path))
-from src.strategies.base import BaseStrategy, FAQResponse  # noqa: E402
-
+import src.strategies.base
 
 # Chargement des variables d'environnement
 load_dotenv()
@@ -26,7 +27,7 @@ token_benchmark_faq = os.getenv("token_benchmark_faq")
 logger = logging.getLogger(__name__)
 
 
-class StrategyALLM(BaseStrategy):
+class StrategyALLM(src.strategies.base.BaseStrategy):
     """
     Stratégie utilisant uniquement un LLM pour générer les réponses.
     """
@@ -63,7 +64,7 @@ class StrategyALLM(BaseStrategy):
         logger.info(f"StrategyALLM initialisée: {self.model_name}")
     
     # Fonction de génération de réponse
-    def _generate_answer(self, question: str) -> FAQResponse:
+    def _generate_answer(self, question: str) -> src.strategies.base.FAQResponse:
         """Génère une réponse avec le LLM."""
         try:
             messages = [
@@ -85,7 +86,7 @@ class StrategyALLM(BaseStrategy):
                 confidence = 0.0
             else:
                 confidence = self._estimate_confidence(answer_text)
-            return FAQResponse(
+            return src.strategies.base.FAQResponse(
                 answer=answer_text,
                 confidence=confidence,
                 strategy="llm_only",
@@ -93,9 +94,9 @@ class StrategyALLM(BaseStrategy):
                 metadata={"model": self.model_name}
             )
             
-        except Exception as e:
+        except RuntimeError as e:
             logger.error(f"Erreur LLM: {e}")
-            return FAQResponse(
+            return src.strategies.base.FAQResponse(
                 answer="Désolé, je ne peux pas répondre pour le moment.",
                 confidence=0.0,
                 strategy="llm_only",
@@ -138,6 +139,7 @@ class StrategyALLM(BaseStrategy):
 if __name__ == "__main__":
 
     import json
+
     from dotenv import load_dotenv
     load_dotenv()
 

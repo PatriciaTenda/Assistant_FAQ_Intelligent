@@ -11,9 +11,9 @@ import logging
 import sys
 import time
 from dataclasses import asdict, dataclass
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 # Ajouter le repertoire parent au path pour les imports
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
@@ -38,8 +38,8 @@ class BenchmarkResult:
     strategy: str
     answer: str
     latency_ms: float
-    confidence: Optional[float]
-    error: Optional[str]
+    confidence: float | None
+    error: str| None
     timestamp: str
 
 
@@ -57,10 +57,10 @@ class BenchmarkRunner:
         logger.info("Base FAQ chargee: %s entrees", len(self.faq_base))
 
         self.strategies = self._init_strategies()
-        self.results: List[BenchmarkResult] = []
+        self.results: list[BenchmarkResult] = []
 
 
-    def _load_json_list(self, path: Path, key: str) -> List[Dict[str, Any]]:
+    def _load_json_list(self, path: Path, key: str) -> list[dict[str, Any]]:
         if not path.exists():
             raise FileNotFoundError(f"Fichier introuvable: {path}")
 
@@ -76,17 +76,17 @@ class BenchmarkRunner:
         return items
 
 
-    def _load_golden_set(self) -> List[Dict[str, Any]]:
+    def _load_golden_set(self) -> list[dict[str, Any]]:
         return self._load_json_list(self.golden_set_path, "golden_set")
 
 
-    def _load_faq_base(self) -> List[Dict[str, Any]]:
+    def _load_faq_base(self) -> list[dict[str, Any]]:
         return self._load_json_list(self.faq_base_path, "faq")
 
 
-    def _init_strategies(self) -> Dict[str, Any]:
+    def _init_strategies(self) -> dict[str, Any]:
         logger.info("Initialisation des strategies...")
-        strategies: Dict[str, Any] = {}
+        strategies: dict[str, Any] = {}
 
         for key, cls in (
             ("strategy_a_llm", StrategyALLM),
@@ -96,8 +96,11 @@ class BenchmarkRunner:
             try:
                 strategies[key] = cls(faq_base=self.faq_base)
                 logger.info("  OK %s", key)
-            except Exception as exc:
-                logger.warning("  KO %s: %s", key, exc)
+            except (TypeError, ValueError, RuntimeError) as exc:
+                logger.warning(
+                               "Stratégie %s ignorée: %s", 
+                               key,
+                               exc)
 
         if not strategies:
             raise RuntimeError("Aucune strategie n'a pu etre initialisee")
@@ -105,9 +108,9 @@ class BenchmarkRunner:
         return strategies
 
 
-    def run_single_question(self, question: Dict[str, Any], strategy_name: str) -> BenchmarkResult:
+    def run_single_question(self, question: dict[str, Any], strategy_name: str) -> BenchmarkResult:
         strategy = self.strategies.get(strategy_name)
-        timestamp = datetime.now().isoformat()
+        timestamp = datetime.now(timezone.utc).isoformat(timespec="seconds")
 
         if strategy is None:
             return BenchmarkResult(
@@ -151,7 +154,7 @@ class BenchmarkRunner:
                 error=error,
                 timestamp=timestamp,
             )
-        except Exception as exc:
+        except (TypeError, ValueError, RuntimeError) as exc:
             return BenchmarkResult(
                 question_id=str(question.get("id", "unknown")),
                 question=question.get("question", ""),
@@ -165,7 +168,7 @@ class BenchmarkRunner:
             )
 
 
-    def run_benchmark(self) -> List[BenchmarkResult]:
+    def run_benchmark(self) -> list[BenchmarkResult]:
         self.results = []
         total_questions = len(self.golden_set)
         strategy_names = list(self.strategies.keys())
@@ -200,9 +203,9 @@ class BenchmarkRunner:
         return self.results
 
 
-    def generate_summary(self) -> Dict[str, Any]:
-        summary: Dict[str, Any] = {}
-        grouped: Dict[str, List[BenchmarkResult]] = {}
+    def generate_summary(self) -> dict[str, Any]:
+        summary: dict[str, Any] = {}
+        grouped: dict[str, list[BenchmarkResult]] = {}
 
         for result in self.results:
             grouped.setdefault(result.strategy, []).append(result)
@@ -223,14 +226,14 @@ class BenchmarkRunner:
         return summary
 
 
-    def save_results(self, filename: Optional[str] = None) -> Path:
+    def save_results(self, filename: str | None = None) -> Path:
         if not filename:
-            filename = f"benchmark_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+            filename = f"benchmark_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"  # noqa: DTZ005
 
         path = self.output_dir / filename
         payload = {
             "metadata": {
-                "timestamp": datetime.now().isoformat(),
+                "timestamp": datetime.now(timezone.utc).isoformat(timespec="seconds"),
                 "golden_set_path": str(self.golden_set_path),
                 "faq_base_path": str(self.faq_base_path),
                 "strategies": list(self.strategies.keys()),
@@ -261,7 +264,7 @@ class BenchmarkRunner:
         print("=" * 60)
 
 
-def _resolve_default_paths(project_root: Path) -> Dict[str, Path]:
+def _resolve_default_paths(project_root: Path) -> dict[str, Path]:
     """Resolve data file defaults with support for upper/lower case names."""
     golden_candidates = [
         project_root / "data" / "Golden_Set.json",
@@ -272,7 +275,7 @@ def _resolve_default_paths(project_root: Path) -> Dict[str, Path]:
         project_root / "data" / "faq_base.json",
     ]
 
-    def first_existing(candidates: List[Path]) -> Path:
+    def first_existing(candidates: list[Path]) -> Path:
         for candidate in candidates:
             if candidate.exists():
                 return candidate

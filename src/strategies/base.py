@@ -6,10 +6,10 @@ Chaque stratégie (A, B, C) doit hériter de BaseStrategy et implémenter
 les méthodes abstraites.
 """
 
-from abc import ABC, abstractmethod
-from typing import Dict, Any, List, Optional
-from dataclasses import dataclass, field, asdict
 import logging
+from abc import ABC, abstractmethod
+from dataclasses import asdict, dataclass, field
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
@@ -47,11 +47,11 @@ class FAQResponse:
     answer: str
     confidence: float = 0.0
     strategy: str = ""
-    sources: List[Dict[str, Any]] = field(default_factory=list)
-    error: Optional[str] = None
-    metadata: Dict[str, Any] = field(default_factory=dict)
+    sources: list[dict[str, Any]] = field(default_factory=list)
+    error: str | None= None
+    metadata: dict[str, Any] = field(default_factory=dict)
     
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         """Convertit la réponse en dictionnaire."""
         return asdict(self)
     
@@ -87,7 +87,7 @@ class BaseStrategy(ABC):
         ...         return FAQResponse(answer="...", confidence=0.8)
     """
     
-    def __init__(self, faq_base: List[Dict[str, Any]]):
+    def __init__(self, faq_base: list[dict[str, Any]]):
         """
         Initialise la stratégie avec la base FAQ.
         
@@ -127,7 +127,7 @@ class BaseStrategy(ABC):
             ValueError: Si une configuration requise est manquante
             RuntimeError: Si l'initialisation échoue
         """
-        pass
+        
     
     @abstractmethod
     def _generate_answer(self, question: str) -> FAQResponse:
@@ -147,7 +147,7 @@ class BaseStrategy(ABC):
             Cette méthode ne devrait pas gérer les exceptions - elles sont
             attrapées par answer() qui retourne une FAQResponse d'erreur.
         """
-        pass
+        
     
     def answer(self, question: str) -> FAQResponse:
         """
@@ -174,7 +174,7 @@ class BaseStrategy(ABC):
         
         try:
             return self._generate_answer(question)
-        except Exception as e:
+        except RuntimeError as e:
             logger.error(f"Erreur dans {self.name}: {e}")
             return FAQResponse(
                 answer="Désolé, une erreur s'est produite lors du traitement.",

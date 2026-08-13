@@ -7,14 +7,16 @@ d'évaluation pour chaque stratégie selon la grille définie.
 Auteur: Patricia
 Date: 27/06/2026
 """
-import unicodedata
-import json 
-import csv  # noqa: F401
+import csv
+import json
 import logging
+import re
+import unicodedata
+from collections import defaultdict  # noqa: F401
+from dataclasses import asdict, dataclass
+from datetime import datetime, timezone
 from pathlib import Path
-from typing import Dict, List, Any, Optional, Tuple # noqa: F401
-from dataclasses import dataclass
-from collections import defaultdict # noqa: F401
+from typing import Any
 
 # Configuration du logging
 logging.basicConfig(
@@ -28,7 +30,7 @@ logger = logging.getLogger(__name__)
 WEIGHTS = {
     "exactitude": 0.30,        # 30% - Informations clés présentes
     "pertinence": 0.20,        # 20% - Réponse en rapport avec la question
-    "absence_hallucination": 0.20,  # 20% - Pas d'informations inventées
+    "hallucination": 0.20,     # 20% - Pas d'informations inventées
     "latence": 0.15,           # 15% - Temps de réponse
     "aveu_ignorance": 0.15     # 15% - Reconnaît ne pas savoir (hors sujet)
 }
@@ -56,13 +58,14 @@ class QuestionEvaluation:
     """Évaluation d'une réponse sur une question."""
     question_id: str
     strategy: str
+    question_type: str
     exactitude_score: float      # 0-1
     pertinence_score: float      # 0-1
     hallucination_score: float   # 0-1 (1 = pas d'hallucination)
     latence_score: float         # 0-1
     aveu_ignorance_score: float  # 0-1 (uniquement pour questions hors sujet)
     score_global: float          # Score pondéré final
-    details: Dict[str, Any]      # Détails supplémentaires
+    details: dict[str, Any]      # Détails supplémentaires
 
 
 class BenchmarkEvaluator:
@@ -90,7 +93,7 @@ class BenchmarkEvaluator:
         self.benchmark_results_path = Path(benchmark_results_path)
         self.golden_set_path = Path(golden_set_path)
         self.output_dir = Path(output_dir)
-        #self.output_dir.mkdir(parents=True, exist_ok=True)
+        self.output_dir.mkdir(parents=True, exist_ok=True)
         
         # Charger les données
         self.benchmark_results = self._load_benchmark_results()
@@ -100,9 +103,9 @@ class BenchmarkEvaluator:
         self.golden_index = {q["id"]: q for q in self.golden_set}
         
         # Résultats d'évaluation
-        self.evaluations: List[QuestionEvaluation] = []
+        self.evaluations: list[QuestionEvaluation] = []
     
-    def _load_benchmark_results(self) -> List[Dict[str, Any]]:
+    def _load_benchmark_results(self) -> list[dict[str, Any]]:
         """
         Charge les résultats du benchmark.
         
@@ -113,7 +116,7 @@ class BenchmarkEvaluator:
             FileNotFoundError: si le fichier de résultats est introuvable
             ValueError: si le contenu n'est pas un JSON valide
             
-        TODO:
+        TODO:   
             1. Charger le fichier JSON des résultats
             2. Extraire la liste des résultats
             3. Retourner la liste
@@ -133,7 +136,7 @@ class BenchmarkEvaluator:
             logger.error(f"Erreur lors du chargement des résultats: {e}")
             raise ValueError(f"Le contenu n'est pas un json valide : {e}") from e
     
-    def _load_golden_set(self) -> List[Dict[str, Any]]:
+    def _load_golden_set(self) -> list[dict[str, Any]]:
         """
         Charge le golden set avec les réponses attendues.
         
@@ -174,15 +177,19 @@ class BenchmarkEvaluator:
         # Mn = Mark non spacing, 
         # c'est à dire les marks qui ne prennent pas de place (ex: accents)
         text_filtered = [c for c in text if unicodedata.category(c) != "Mn"]
-        return "".join(text_filtered) 
+        # Joindre les caractères filtrés pour reformer le texte sans accents
+        text_join = "".join(text_filtered) 
+        # Enlever les autres caractères non alphanumériques (ponctuation, etc.)
+        text_cleaned = re.sub(r'[^a-z0-9\s]', "", text_join)
+        return text_cleaned
         
        
     
     def evaluate_exactitude(
         self, 
         answer: str, 
-        expected_keywords: List[str]
-    ) -> Tuple[float, Dict[str, Any]]:
+        expected_keywords: list[str]
+    ) -> tuple[float, dict[str, Any]]:
         """
         Évalue l'exactitude d'une réponse.
         
@@ -248,7 +255,7 @@ class BenchmarkEvaluator:
         answer: str, 
         question: str,
         question_type: str
-    ) -> Tuple[float, Dict[str, Any]]:
+    ) -> tuple[float, dict[str, Any]]:
         """
         Évalue la pertinence d'une réponse.
         
@@ -310,10 +317,7 @@ class BenchmarkEvaluator:
                             "score_pertinence": 0.0}
         
         # Vérifier la longueur minimale (ex: > 20 caractères)
-        if len(answer_clean) < 20 :
-            score_longueur = len(answer_clean)/20       
-        else :
-            score_longueur = min(len(answer_clean)/20, 1.0) 
+        score_longueur = min(len(answer_clean)/20, 1.0) 
                     
         
         # Vérifier la présence de mots de la question dans la réponse
@@ -345,7 +349,7 @@ class BenchmarkEvaluator:
         answer: str, 
         expected_summary: str,
         question_type: str
-    ) -> Tuple[float, Dict[str, Any]]:
+    ) -> tuple[float, dict[str, Any]]:
         """
         Évalue l'absence d'hallucination dans une réponse.
         
@@ -375,10 +379,84 @@ class BenchmarkEvaluator:
             Cette évaluation est complexe et approximative en automatique.
             Une évaluation manuelle est recommandée pour la validation finale.
         """
-        # TODO: Implémenter la détection d'hallucination
-        raise NotImplementedError("Implémenter evaluate_hallucination")
+        answer_cleaned = answer.strip()
+        answer_normalized = self._normalize_text(answer_cleaned)
+        
+        expression_normalized = [ self._normalize_text(expr) 
+                                  for expr in EXPRESSIONS_IGNORANCE 
+        ]
+        
+        # Evaluer l'absence d'hallucination sur les questions de type "hors_sujet"
+        if question_type == "hors_sujet" :
+            
+            has_ignorance = any(expr in answer_normalized for expr in expression_normalized)
+            
+            score = 1.0 if has_ignorance else 0.0
+            
+            return score, {
+                            "hallucination" :("aveu d'ignorance détecté" 
+                                              if has_ignorance
+                                              else "réponse avec contenu inventé") ,
+                            "has_ignorance" : has_ignorance,
+                            "score_hallucination" : score
+            }
+            
+        # 2. Pour les autres types de questions, on peut comparer la réponse à un résumé attendu
+        score = 0.8  # Score par défaut (bénéfice du doute)
+        suspects_phone = []
+        suspects_url = []
+        amounts_suspects = set()
+        dates_suspects = set()
+        
+        # Vérifier le numéro de téléphone au format incorrect (ex: 123-456-7890)
+        phones_found = re.findall(r'\b0\d[\d\s.\-]{7,}\d\b', answer_cleaned) 
+        for number in phones_found:
+            chiffre = re.sub(r'\D', "", number)  # Retirer les caractères non numériques
+            if len(chiffre) != 10 :
+                suspects_phone.append(number)
+                score -= 0.1
+                
+        # Vérifier les URLs au format incorrect (ex: http://example.com)
+        urls_found = re.findall(r'\b[\w-]+\.(?:fr|gouv\.fr|com|org|net)\b', answer_cleaned)
+        urls_found_expected = re.findall(r'\b[\w-]+\.(?:fr|gouv\.fr|com|org|net)\b', expected_summary)
+        for url in urls_found:
+            if url not in urls_found_expected:
+                suspects_url.append(url)
+                score -= 0.1
+                
+        # Vérifier les montants au format incorrect (ex: 1000€, 1000 $)
+        amounts_found = re.findall(r'\b\d*[.,]?\d+\s*€\b', answer_cleaned)
+        amounts_expected_found = re.findall(r'\b\d+[.,]?\d*\s*€\b', expected_summary)
+        
+        if amounts_found and amounts_expected_found:
+            amounts = set(amounts_found) 
+            amounts_expected = set(amounts_expected_found)
+            amounts_suspects = amounts - amounts_expected
+            score -= 0.1 * len(amounts_suspects)
+            
+            
+        # Vérifier les dates au format incorrect (ex: 31/02/2025)
+        dates_found = re.findall(r'\b\d+(?:jour|mois|semaine|année)s?\b', answer_cleaned)
+        dates_expected_found = re.findall(r'\b\d+(?:jour|mois|semaine|année)s?\b', expected_summary)
+        
+        if dates_found and dates_expected_found:
+            dates = set(dates_found) 
+            dates_expected = set(dates_expected_found)
+            dates_suspects = dates - dates_expected
+            score -= 0.1 * len(dates_suspects)
+            
+        # 3. score et details
+        return max(score, 0.0), {
+                    "suspects_phone": suspects_phone,
+                    "suspects_url": suspects_url,
+                    "suspects_amounts": sorted(amounts_suspects),
+                    "suspects_dates": sorted(dates_suspects),
+                    "score_hallucination": max(score, 0.0)
+               }
     
-    def evaluate_latence(self, latency_ms: float) -> Tuple[float, Dict[str, Any]]:
+    
+    
+    def evaluate_latence(self, latency_ms: float) -> tuple[float, dict[str, Any]]:
         """
         Évalue le score de latence.
         
@@ -397,14 +475,28 @@ class BenchmarkEvaluator:
                - > 2000ms: 0.2
             3. Retourner le score et les détails
         """
-        # TODO: Implémenter l'évaluation de latence
-        raise NotImplementedError("Implémenter evaluate_latence")
+        # Comparer la latence aux seuils définis dans LATENCY_THRESHOLDS et attribuer un score
+        
+        if latency_ms < LATENCY_THRESHOLDS["excellent"]:
+            score = 1.0
+        elif latency_ms < LATENCY_THRESHOLDS["bon"]:
+            score = 0.8
+        elif latency_ms < LATENCY_THRESHOLDS["acceptable"]:
+            score = 0.5
+        else:
+            score = 0.2
+
+        return score, {"latency_ms": latency_ms, 
+                       "score_latence": score
+        }
+        
     
+        
     def evaluate_aveu_ignorance(
         self, 
         answer: str, 
         question_type: str
-    ) -> Tuple[float, Dict[str, Any]]:
+    ) -> tuple[float, dict[str, Any]]:
         """
         Évalue la capacité à avouer son ignorance.
         
@@ -432,12 +524,43 @@ class BenchmarkEvaluator:
                - Sinon: score = 0.0
             3. Retourner le score et les détails
         """
-        # TODO: Implémenter l'évaluation d'aveu d'ignorance
-        raise NotImplementedError("Implémenter evaluate_aveu_ignorance")
-    
+        # Evaluation de l'aveu d'ignorance pour les questions "hors sujet"
+        if  question_type != "hors_sujet":
+            details = {
+                "applicable": False,
+                "type": question_type,
+                "has_ignorance": False,
+                "matched_expressions": None,
+                "reason": "Non applicable pour les questions de type differents de 'hors_sujet'",                
+            }
+            return 1.0, details
+        
+        # Détection des phrases d'aveu d'ignorance
+        normalized_answer = self._normalize_text(answer)
+        normalized_expressions = [
+            self._normalize_text(phrase)
+            for phrase in EXPRESSIONS_IGNORANCE
+        ]
+        matched_expression = next(
+            (phrase for phrase in normalized_expressions
+                if phrase in normalized_answer),
+            None
+    )
+        ignorance_detected = matched_expression is not None
+        score = 1.0 if ignorance_detected else 0.0 
+        details = { 
+                    "applicable": True,
+                    "type": question_type,
+                    "has_ignorance": ignorance_detected,
+                    "matched_expression": matched_expression,
+                    "reason": ("Aveu d'ignorance détecté !" if ignorance_detected else "la question n'est pas reconnu comme hors-sujet")
+        }
+        return score, details
+            
+                             
     def evaluate_single_result(
         self, 
-        result: Dict[str, Any]
+        result: dict[str, Any]
     ) -> QuestionEvaluation:
         """
         Évalue un résultat de benchmark unique.
@@ -460,10 +583,77 @@ class BenchmarkEvaluator:
                score = sum(score_i * weight_i pour i dans critères)
             4. Créer et retourner la QuestionEvaluation
         """
-        # TODO: Implémenter l'évaluation d'un résultat
-        raise NotImplementedError("Implémenter evaluate_single_result")
+        # Recupérer les informations du résultat
+        question_id = result.get("question_id")
+        answer = result.get("answer", "")
+        latency_ms = result.get("latency_ms", 0.0)
+        strategy = result.get("strategy", "unknown")
+        question_type = result.get("question_type", "unknown")
+        
+        # Récupérer la question correspondante dans le golden set
+        golden_question = self.golden_index.get(question_id)
+        if golden_question is None:
+            golden_question = self.golden_index.get(str(question_id))
+        
+        if golden_question is None:
+            raise ValueError(f"La question avec l'ID {question_id} est introuvable dans le golden set.")
+        
+        question_id = str(golden_question.get("id"))
+        question = str(golden_question.get("question"))
+        question_type = str(golden_question.get("type"))
+        expected_answer = str(golden_question.get("expected_answer_summary"))
+        expected_keywords = golden_question.get("expected_keywords", [])
+            
+        exactitude_score, exactitude_details = self.evaluate_exactitude(
+                                                answer = answer, 
+                                                expected_keywords=expected_keywords
+                                            )
+        pertinence_score, pertinence_details = self.evaluate_pertinence(
+                                                answer = answer, question=question, 
+                                                question_type = question_type
+                                            )
+        hallucination_score, hallucination_details = self.evaluate_hallucination(
+                                                answer = answer, 
+                                                expected_summary=expected_answer, 
+                                                question_type = question_type
+                                            )
+        latence_score, latence_details = self.evaluate_latence(
+                                                latency_ms = latency_ms
+                                    )
+        aveu_ignorance_score, aveu_ignorance_details = self.evaluate_aveu_ignorance(
+                                                        answer = answer, 
+                                                        question_type = question_type
+                                                    )
+        
+        # Calcul du score  pondéré pour chaque question
+        score_global = (exactitude_score*WEIGHTS["exactitude"] 
+                        + pertinence_score*WEIGHTS["pertinence"] 
+                        + hallucination_score*WEIGHTS["hallucination"] 
+                        + latence_score*WEIGHTS["latence"] 
+                        + aveu_ignorance_score*WEIGHTS["aveu_ignorance"]
+                    )
+        
+        question_evaluation = QuestionEvaluation(
+                question_id = question_id,
+                strategy = strategy,
+                question_type = question_type,
+                exactitude_score = exactitude_score,
+                pertinence_score = pertinence_score,
+                hallucination_score = hallucination_score,
+                latence_score = latence_score,
+                aveu_ignorance_score = aveu_ignorance_score,
+                score_global = score_global,
+                details = {
+                    "exactitude": exactitude_details,
+                    "pertinence": pertinence_details,
+                    "hallucination": hallucination_details,
+                    "latence": latence_details,
+                    "aveu_ignorance": aveu_ignorance_details
+                }     
+        )
+        return question_evaluation
     
-    def run_evaluation(self) -> List[QuestionEvaluation]:
+    def run_evaluation(self) -> list[QuestionEvaluation]:
         """
         Exécute l'évaluation complète de tous les résultats.
         
@@ -477,10 +667,32 @@ class BenchmarkEvaluator:
                - Logger la progression
             2. Retourner self.evaluations
         """
-        # TODO: Implémenter l'évaluation complète
-        raise NotImplementedError("Implémenter run_evaluation")
+        # Éviter de recalculer si l'évaluation a déjà été faite
+        if self.evaluations:
+            return self.evaluations
+        
+        # Récupérer la liste des résultats déjà chargés
+        results = self.benchmark_results
+        
+        for result in results:
+            try:
+                evaluation = self.evaluate_single_result(result=result)
+                self.evaluations.append(evaluation)
+                logger.info(
+                    "Evaluation terminée pour la question avec l'ID %s et la stratégie correspondante est %s",
+                    result.get('question_id'),
+                    result.get('strategy')
+                )
+                
+            except (KeyError, TypeError, ValueError) as e:
+                logger.error(
+                    "Erreur lors de l'évaluation de la question avec l'ID %s: %s",
+                    result.get('question_id'),
+                    e
+                )
+        return self.evaluations
     
-    def generate_strategy_scores(self) -> Dict[str, Dict[str, float]]:
+    def generate_strategy_scores(self) -> dict[str, dict[str, float]]:
         """
         Calcule les scores agrégés par stratégie.
         
@@ -493,10 +705,51 @@ class BenchmarkEvaluator:
             3. Calculer le score global moyen
             4. Retourner les scores agrégés
         """
-        # TODO: Implémenter le calcul des scores par stratégie
-        raise NotImplementedError("Implémenter generate_strategy_scores")
-    
-    def generate_recommendation(self) -> Dict[str, Any]:
+        
+        strategy_scores: dict[str, dict[str, list[float]]] = {}
+                
+        # récuperer la listes des resultats
+        evaluations = self.evaluations or self.run_evaluation()
+        for evaluation in evaluations:
+            
+        # grouper les évaluations par stratégie
+            strategy = evaluation.strategy
+            if strategy not in strategy_scores: 
+                strategy_scores[strategy] = {
+                    "exactitude": [],
+                    "pertinence": [],
+                    "hallucination": [],
+                    "latence": [],
+                    "aveu_ignorance": [],
+                }
+            strategy_scores[strategy]["exactitude"].append(evaluation.exactitude_score)
+            strategy_scores[strategy]["pertinence"].append(evaluation.pertinence_score)
+            strategy_scores[strategy]["hallucination"].append(evaluation.hallucination_score)
+            strategy_scores[strategy]["latence"].append(evaluation.latence_score)
+            strategy_scores[strategy]["aveu_ignorance"].append(evaluation.aveu_ignorance_score)
+            
+        # calculer la moyenne globale des scores de chaque stratégie
+        scores_global_by_criterion: dict[str, dict[str, float]] = {}
+        for strategy , criteria in strategy_scores.items():
+            for criterion, scores in criteria.items():
+                avg_score_criterion = sum(scores) / len(scores)
+                if strategy not in scores_global_by_criterion:
+                    scores_global_by_criterion[strategy] = {}      
+                scores_global_by_criterion[strategy][criterion] = avg_score_criterion
+                
+        # calculer le score global moyen pour chaque stratégie
+        scores_global: dict[str, dict[str, float]] = {}
+        for strategy, items_scores in scores_global_by_criterion.items():
+            avg_global_score = sum(items_scores[criterion] * WEIGHTS[criterion] for criterion in WEIGHTS) / sum(WEIGHTS.values())
+            scores_global[strategy] = {
+                        **items_scores,
+                        "avg_global_score" : avg_global_score,
+                    }
+        return scores_global                   
+        
+             
+        
+    def generate_recommendation(self) -> dict[str, Any]:
         """
         Génère une recommandation de stratégie basée sur les scores.
         
@@ -514,8 +767,58 @@ class BenchmarkEvaluator:
             4. Rédiger une justification
             5. Retourner la recommandation structurée
         """
-        # TODO: Implémenter la génération de recommandation
-        raise NotImplementedError("Implémenter generate_recommendation")
+        # Calculer les scores par stratégie
+        strategy_scores = self.generate_strategy_scores()
+        if not strategy_scores:
+            return {
+                "stratégie_recommandée": None,
+                "justification": (
+                    "Aucune stratégie n'a été évaluée." 
+                    "Car aucun score disponible."
+                ),
+                "scores_comparatifs":{},
+                "points_forts_faibles":{}
+            }
+            
+        # Identifier la stratégie avec le meilleur score global
+        best_strategy = None
+        best_score = float('-inf')
+        for strategy, score_items in strategy_scores.items():
+            avg_score = score_items.get("avg_global_score", 0.0)
+            if avg_score > best_score:
+                best_score = avg_score
+                best_strategy = strategy
+                
+        # Analyser les points forts/faibles de chaque stratégie 
+        strengths_and_weaknesses: dict[str, dict[str, list[str]]] = {}
+        
+        for strategy, scores in strategy_scores.items():
+            strengths = []
+            weaknesses = []
+            for criterion, score in scores.items():
+                if criterion == "avg_global_score":
+                    continue
+                if score >= 0.8:
+                    strengths.append(criterion)
+                elif score < 0.5 :
+                    weaknesses.append(criterion)
+                    
+            strengths_and_weaknesses[strategy] = {
+                "points-forts": strengths,
+                "points-faibles": weaknesses
+            }
+        
+        return {
+            "stratégie_recommandée": best_strategy,
+            "justification": (
+                f"La stratégie '{best_strategy}' est recommandée."
+                f"Car elle a obtenu le meilleur score global moyen,"
+                f"pondéré :{best_score:.2f}."
+            ),
+            "scores_comparatifs": strategy_scores,
+            "points_forts_faibles": strengths_and_weaknesses,
+        }
+         
     
     def export_csv(self, filename: str = "evaluation_results.csv") -> Path:
         """
@@ -536,8 +839,45 @@ class BenchmarkEvaluator:
             3. Écrire chaque évaluation
             4. Retourner le chemin du fichier
         """
-        # TODO: Implémenter l'export CSV
-        raise NotImplementedError("Implémenter export_csv")
+        # définir le chemin du fichier de sortie
+        output_path = self.output_dir / filename
+        
+        # Récupérer les évaluations
+        evaluations = self.evaluations or self.run_evaluation()
+        
+        # Définir les colonnes du CSV
+        colonnes = [
+            "question_id", 
+            "strategy", 
+            "question_type",
+            "exactitude", 
+            "pertinence", 
+            "hallucination", 
+            "latence", 
+            "aveu_ignorance", 
+            "score_global"
+        ]
+
+        # Écrire les résultats dans le fichier CSV
+        with open(output_path, "w", newline="", encoding="utf-8") as filecsv:
+            
+            writer = csv.DictWriter(filecsv, fieldnames=colonnes)
+            
+            writer.writeheader()
+            for evaluation in evaluations:
+                writer.writerow({
+                    "question_id": evaluation.question_id,
+                    "strategy": evaluation.strategy,
+                    "question_type": evaluation.question_type,
+                    "exactitude": evaluation.exactitude_score,
+                    "pertinence": evaluation.pertinence_score,
+                    "hallucination": evaluation.hallucination_score,
+                    "latence": evaluation.latence_score,
+                    "aveu_ignorance": evaluation.aveu_ignorance_score,
+                    "score_global": evaluation.score_global
+                })
+                
+        return output_path
     
     def export_report(self, filename: str = "evaluation_report.json") -> Path:
         """
@@ -558,9 +898,53 @@ class BenchmarkEvaluator:
             2. Sauvegarder le fichier JSON
             3. Retourner le chemin du fichier
         """
-        # TODO: Implémenter l'export du rapport
-        raise NotImplementedError("Implémenter export_report")
-
+        # Définir le fichier de sortie
+        output_path = self.output_dir / filename
+        
+        # Creer la liste des evaluations detaillees
+        evaluations = self.evaluations or self.run_evaluation()
+        
+        # Crééer les scores par stratégie
+        payload = {
+            "metadata" : {
+                "date": datetime.now(timezone.utc).strftime(
+                         "%Y-%m-%d %H:%M:%S UTC"
+                ),
+                
+                "benchmark_results": str(
+                            self.benchmark_results_path
+                ),
+                
+                "golden_set": str(
+                    self.golden_set_path                                  
+                ),
+                
+                "evaluation_results_csv" : str(
+                    self.output_dir / "evaluation_results.csv"
+                )
+        },
+            "scores_par_strategie": (
+                self.generate_strategy_scores()
+            ),
+            
+            "recommandation": self.generate_recommendation(),
+            
+            "evaluations_detaillees": [
+                asdict(evaluation)
+                for evaluation in evaluations
+            ]  # self.evaluations contient le detail des evaluations
+        }
+        
+        # Créer un fichier qui contient le rapport complet "
+        with open(output_path, "w", newline="", encoding="utf-8") as f:
+            json.dump(
+                payload, 
+                f, 
+                ensure_ascii=False, 
+                indent=4
+            )
+        return output_path
+    
 
 def main():
     """
@@ -577,26 +961,62 @@ def main():
         5. Afficher la recommandation
     """
     import sys
-    
+    from pathlib import Path
+
     # Vérifier les arguments
     if len(sys.argv) < 2:
         print("Usage: python evaluate_results.py <benchmark_results.json>")
         print("Exemple: python evaluate_results.py results/benchmark_20250115_143022.json")
+        
         sys.exit(1)
     
     benchmark_results_path = sys.argv[1]
     
+    if not Path(benchmark_results_path).exists():
+        logger.error(
+            "Le fichier de résultats du benchmark %s n'existe pas.",
+             benchmark_results_path,
+        )
+        
+        sys.exit(1)
+   
     # Configuration des chemins
-    project_root = Path(__file__).parent.parent
-    golden_set_path = project_root / "data" / "golden_set.json"
+    project_root = Path(__file__).resolve().parents[2]
+    golden_set_candidates = [
+        project_root / "data" / "golden_set.json",
+        project_root / "data" / "Golden_Set.json",
+    ]
+    golden_set_path = next(
+        (path for path in golden_set_candidates if path.exists()),
+        golden_set_candidates[0],
+    )
     output_dir = project_root / "results"
     
-    # TODO: Implémenter le main
     # 1. Créer l'évaluateur
-    # 2. Lancer l'évaluation
-    # 3. Exporter les résultats
-    # 4. Afficher la recommandation
+    benchmarkEvaluator = BenchmarkEvaluator(
+            benchmark_results_path, 
+            golden_set_path,
+            output_dir
+    )
     
+    # 2. Lancer l'évaluation
+    benchmarkEvaluator.run_evaluation()  
+     
+    # 3. Exporter les résultats
+    csv_path = benchmarkEvaluator.export_csv()
+    
+    json_path =benchmarkEvaluator.export_report()
+    
+    # 4. Afficher la recommandation
+    recommendation = (
+        benchmarkEvaluator.generate_recommendation()
+    )
+    print("\n========Recommandation========")
+    print(f"Stratégie recommandée: {recommendation['stratégie_recommandée']}")
+    print(f"Justification: {recommendation['justification']}")
+    
+    logger.info("Chemin du fichier CSV des résultats détaillés : %s", csv_path)
+    logger.info("Chemin du fichier JSON du rapport complet : %s", json_path)
     logger.info("Évaluation terminée.")
 
 

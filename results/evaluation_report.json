@@ -1,0 +1,4669 @@
+{
+    "metadata": {
+        "date": "2026-08-13 23:17:10 UTC",
+        "benchmark_results": "d:\\ProjectFolderDevAI_2025-2026\\Projet_FAQ_Intelligent\\Assistant_FAQ_Intelligent\\results\\benchmark_20260630_213754.json",
+        "golden_set": "D:\\ProjectFolderDevAI_2025-2026\\Projet_FAQ_Intelligent\\Assistant_FAQ_Intelligent\\data\\golden_set.json",
+        "evaluation_results_csv": "D:\\ProjectFolderDevAI_2025-2026\\Projet_FAQ_Intelligent\\Assistant_FAQ_Intelligent\\results\\evaluation_results.csv"
+    },
+    "scores_par_strategie": {
+        "strategy_a_llm": {
+            "exactitude": 0.47944444444444445,
+            "pertinence": 0.8094778016101546,
+            "hallucination": 0.7933333333333336,
+            "latence": 0.5933333333333334,
+            "aveu_ignorance": 1.0,
+            "avg_global_score": 0.703395560322031
+        },
+        "strategy_b_rag": {
+            "exactitude": 0.6972222222222222,
+            "pertinence": 0.5010732921762334,
+            "hallucination": 0.6366666666666667,
+            "latence": 0.75,
+            "aveu_ignorance": 0.8333333333333334,
+            "avg_global_score": 0.6742146584352466
+        },
+        "strategy_c_qa": {
+            "exactitude": 0.40944444444444444,
+            "pertinence": 0.4902475873799404,
+            "hallucination": 0.6433333333333333,
+            "latence": 0.7500000000000003,
+            "aveu_ignorance": 0.8333333333333334,
+            "avg_global_score": 0.5870495174759881
+        }
+    },
+    "recommandation": {
+        "stratégie_recommandée": "strategy_a_llm",
+        "justification": "La stratégie 'strategy_a_llm' est recommandée.Car elle a obtenu le meilleur score global moyen,pondéré :0.70.",
+        "scores_comparatifs": {
+            "strategy_a_llm": {
+                "exactitude": 0.47944444444444445,
+                "pertinence": 0.8094778016101546,
+                "hallucination": 0.7933333333333336,
+                "latence": 0.5933333333333334,
+                "aveu_ignorance": 1.0,
+                "avg_global_score": 0.703395560322031
+            },
+            "strategy_b_rag": {
+                "exactitude": 0.6972222222222222,
+                "pertinence": 0.5010732921762334,
+                "hallucination": 0.6366666666666667,
+                "latence": 0.75,
+                "aveu_ignorance": 0.8333333333333334,
+                "avg_global_score": 0.6742146584352466
+            },
+            "strategy_c_qa": {
+                "exactitude": 0.40944444444444444,
+                "pertinence": 0.4902475873799404,
+                "hallucination": 0.6433333333333333,
+                "latence": 0.7500000000000003,
+                "aveu_ignorance": 0.8333333333333334,
+                "avg_global_score": 0.5870495174759881
+            }
+        },
+        "points_forts_faibles": {
+            "strategy_a_llm": {
+                "points-forts": [
+                    "pertinence",
+                    "aveu_ignorance"
+                ],
+                "points-faibles": [
+                    "exactitude"
+                ]
+            },
+            "strategy_b_rag": {
+                "points-forts": [
+                    "aveu_ignorance"
+                ],
+                "points-faibles": []
+            },
+            "strategy_c_qa": {
+                "points-forts": [
+                    "aveu_ignorance"
+                ],
+                "points-faibles": [
+                    "exactitude",
+                    "pertinence"
+                ]
+            }
+        }
+    },
+    "evaluations_detaillees": [
+        {
+            "question_id": "GS001",
+            "strategy": "strategy_a_llm",
+            "question_type": "direct_match",
+            "exactitude_score": 0.8,
+            "pertinence_score": 0.9166666666666667,
+            "hallucination_score": 0.6000000000000001,
+            "latence_score": 0.2,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.7233333333333334,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "servicepublicfr",
+                        "mairie",
+                        "lieu de naissance",
+                        "piece didentite"
+                    ],
+                    "keywords_missing": [
+                        "gratuit"
+                    ],
+                    "score_exactitude": 0.8
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.8333333333333334,
+                    "Mots_question_trouvés": [
+                        "acte",
+                        "de",
+                        "naissance",
+                        "obtenir",
+                        "un"
+                    ],
+                    "score_pertinence": 0.9166666666666667
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [
+                        "Service-public.fr",
+                        "service-public.fr"
+                    ],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.6000000000000001
+                },
+                "latence": {
+                    "latency_ms": 2159.62,
+                    "score_latence": 0.2
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "direct_match",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS001",
+            "strategy": "strategy_b_rag",
+            "question_type": "direct_match",
+            "exactitude_score": 1.0,
+            "pertinence_score": 0.75,
+            "hallucination_score": 0.7000000000000001,
+            "latence_score": 0.5,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.8150000000000001,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "servicepublicfr",
+                        "mairie",
+                        "lieu de naissance",
+                        "gratuit",
+                        "piece didentite"
+                    ],
+                    "keywords_missing": [],
+                    "score_exactitude": 1.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.5,
+                    "Mots_question_trouvés": [
+                        "de",
+                        "naissance",
+                        "un"
+                    ],
+                    "score_pertinence": 0.75
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [
+                        "service-public.fr"
+                    ],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.7000000000000001
+                },
+                "latence": {
+                    "latency_ms": 1342.84,
+                    "score_latence": 0.5
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "direct_match",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS001",
+            "strategy": "strategy_c_qa",
+            "question_type": "direct_match",
+            "exactitude_score": 0.0,
+            "pertinence_score": 0.275,
+            "hallucination_score": 0.8,
+            "latence_score": 0.2,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.395,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [
+                        "servicepublicfr",
+                        "mairie",
+                        "lieu de naissance",
+                        "gratuit",
+                        "piece didentite"
+                    ],
+                    "score_exactitude": 0.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 0.55,
+                    "score_lexical": 0.0,
+                    "Mots_question_trouvés": [],
+                    "score_pertinence": 0.275
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 3398.42,
+                    "score_latence": 0.2
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "direct_match",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS002",
+            "strategy": "strategy_a_llm",
+            "question_type": "direct_match",
+            "exactitude_score": 0.0,
+            "pertinence_score": 0.8571428571428572,
+            "hallucination_score": 0.8,
+            "latence_score": 0.5,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.5564285714285715,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [
+                        "lundi",
+                        "samedi",
+                        "9h",
+                        "12h",
+                        "14h",
+                        "18h",
+                        "17h",
+                        "hiver"
+                    ],
+                    "score_exactitude": 0.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.7142857142857143,
+                    "Mots_question_trouvés": [
+                        "de",
+                        "dechetterie",
+                        "horaires",
+                        "la",
+                        "les"
+                    ],
+                    "score_pertinence": 0.8571428571428572
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 1197.76,
+                    "score_latence": 0.5
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "direct_match",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS002",
+            "strategy": "strategy_b_rag",
+            "question_type": "direct_match",
+            "exactitude_score": 1.0,
+            "pertinence_score": 0.7142857142857143,
+            "hallucination_score": 0.8,
+            "latence_score": 0.5,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.8278571428571428,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "lundi",
+                        "samedi",
+                        "9h",
+                        "12h",
+                        "14h",
+                        "18h",
+                        "17h",
+                        "hiver"
+                    ],
+                    "keywords_missing": [],
+                    "score_exactitude": 1.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.42857142857142855,
+                    "Mots_question_trouvés": [
+                        "de",
+                        "la",
+                        "les"
+                    ],
+                    "score_pertinence": 0.7142857142857143
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 1225.11,
+                    "score_latence": 0.5
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "direct_match",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS002",
+            "strategy": "strategy_c_qa",
+            "question_type": "direct_match",
+            "exactitude_score": 0.0,
+            "pertinence_score": 0.49642857142857144,
+            "hallucination_score": 0.8,
+            "latence_score": 0.8,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.5292857142857144,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [
+                        "lundi",
+                        "samedi",
+                        "9h",
+                        "12h",
+                        "14h",
+                        "18h",
+                        "17h",
+                        "hiver"
+                    ],
+                    "score_exactitude": 0.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 0.85,
+                    "score_lexical": 0.14285714285714285,
+                    "Mots_question_trouvés": [
+                        "horaires"
+                    ],
+                    "score_pertinence": 0.49642857142857144
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 936.55,
+                    "score_latence": 0.8
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "direct_match",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS003",
+            "strategy": "strategy_a_llm",
+            "question_type": "direct_match",
+            "exactitude_score": 1.0,
+            "pertinence_score": 0.8333333333333333,
+            "hallucination_score": 0.5000000000000001,
+            "latence_score": 0.5,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.7916666666666666,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "servicepublicfr",
+                        "mairie",
+                        "piece didentite",
+                        "justificatif de domicile"
+                    ],
+                    "keywords_missing": [],
+                    "score_exactitude": 1.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.6666666666666666,
+                    "Mots_question_trouvés": [
+                        "electorales",
+                        "les",
+                        "listes",
+                        "sur"
+                    ],
+                    "score_pertinence": 0.8333333333333333
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [
+                        "service-public.fr",
+                        "service-public.fr",
+                        "service-public.fr"
+                    ],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.5000000000000001
+                },
+                "latence": {
+                    "latency_ms": 1992.86,
+                    "score_latence": 0.5
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "direct_match",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS003",
+            "strategy": "strategy_b_rag",
+            "question_type": "direct_match",
+            "exactitude_score": 1.0,
+            "pertinence_score": 0.5833333333333334,
+            "hallucination_score": 0.7000000000000001,
+            "latence_score": 0.5,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.7816666666666666,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "servicepublicfr",
+                        "mairie",
+                        "piece didentite",
+                        "justificatif de domicile"
+                    ],
+                    "keywords_missing": [],
+                    "score_exactitude": 1.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.16666666666666666,
+                    "Mots_question_trouvés": [
+                        "sur"
+                    ],
+                    "score_pertinence": 0.5833333333333334
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [
+                        "service-public.fr"
+                    ],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.7000000000000001
+                },
+                "latence": {
+                    "latency_ms": 1027.02,
+                    "score_latence": 0.5
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "direct_match",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS003",
+            "strategy": "strategy_c_qa",
+            "question_type": "direct_match",
+            "exactitude_score": 0.0,
+            "pertinence_score": 0.8333333333333333,
+            "hallucination_score": 0.8,
+            "latence_score": 0.8,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.5966666666666667,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [
+                        "servicepublicfr",
+                        "mairie",
+                        "piece didentite",
+                        "justificatif de domicile"
+                    ],
+                    "score_exactitude": 0.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.6666666666666666,
+                    "Mots_question_trouvés": [
+                        "electorales",
+                        "les",
+                        "listes",
+                        "sur"
+                    ],
+                    "score_pertinence": 0.8333333333333333
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 801.78,
+                    "score_latence": 0.8
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "direct_match",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS004",
+            "strategy": "strategy_a_llm",
+            "question_type": "direct_match",
+            "exactitude_score": 0.5,
+            "pertinence_score": 0.9166666666666667,
+            "hallucination_score": 0.7000000000000001,
+            "latence_score": 0.5,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.6983333333333334,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "mairie",
+                        "cerfa",
+                        "plan"
+                    ],
+                    "keywords_missing": [
+                        "4 exemplaires",
+                        "2 mois",
+                        "3 mois"
+                    ],
+                    "score_exactitude": 0.5
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.8333333333333334,
+                    "Mots_question_trouvés": [
+                        "construire",
+                        "de",
+                        "demander",
+                        "permis",
+                        "un"
+                    ],
+                    "score_pertinence": 0.9166666666666667
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [
+                        "service-public.fr"
+                    ],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.7000000000000001
+                },
+                "latence": {
+                    "latency_ms": 1878.87,
+                    "score_latence": 0.5
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "direct_match",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS004",
+            "strategy": "strategy_b_rag",
+            "question_type": "direct_match",
+            "exactitude_score": 0.6666666666666666,
+            "pertinence_score": 0.75,
+            "hallucination_score": 0.8,
+            "latence_score": 0.5,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.735,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "mairie",
+                        "4 exemplaires",
+                        "cerfa",
+                        "plan"
+                    ],
+                    "keywords_missing": [
+                        "2 mois",
+                        "3 mois"
+                    ],
+                    "score_exactitude": 0.6666666666666666
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.5,
+                    "Mots_question_trouvés": [
+                        "construire",
+                        "de",
+                        "permis"
+                    ],
+                    "score_pertinence": 0.75
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 1217.27,
+                    "score_latence": 0.5
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "direct_match",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS004",
+            "strategy": "strategy_c_qa",
+            "question_type": "direct_match",
+            "exactitude_score": 0.0,
+            "pertinence_score": 0.6666666666666666,
+            "hallucination_score": 0.7000000000000001,
+            "latence_score": 0.8,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.5433333333333333,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [
+                        "mairie",
+                        "4 exemplaires",
+                        "cerfa",
+                        "plan",
+                        "2 mois",
+                        "3 mois"
+                    ],
+                    "score_exactitude": 0.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.3333333333333333,
+                    "Mots_question_trouvés": [
+                        "de",
+                        "permis"
+                    ],
+                    "score_pertinence": 0.6666666666666666
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [
+                        "ants.gouv.fr"
+                    ],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.7000000000000001
+                },
+                "latence": {
+                    "latency_ms": 855.19,
+                    "score_latence": 0.8
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "direct_match",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS005",
+            "strategy": "strategy_a_llm",
+            "question_type": "direct_match",
+            "exactitude_score": 0.3333333333333333,
+            "pertinence_score": 0.8571428571428572,
+            "hallucination_score": 0.8,
+            "latence_score": 0.5,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.6564285714285715,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "bouteilles",
+                        "metalliques"
+                    ],
+                    "keywords_missing": [
+                        "emballages plastiques",
+                        "conserves",
+                        "cartons",
+                        "papiers"
+                    ],
+                    "score_exactitude": 0.3333333333333333
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.7142857142857143,
+                    "Mots_question_trouvés": [
+                        "bac",
+                        "dans",
+                        "dechets",
+                        "jaune",
+                        "le"
+                    ],
+                    "score_pertinence": 0.8571428571428572
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 1872.45,
+                    "score_latence": 0.5
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "direct_match",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS005",
+            "strategy": "strategy_b_rag",
+            "question_type": "direct_match",
+            "exactitude_score": 1.0,
+            "pertinence_score": 0.5,
+            "hallucination_score": 0.8,
+            "latence_score": 0.5,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.785,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "emballages plastiques",
+                        "bouteilles",
+                        "metalliques",
+                        "conserves",
+                        "cartons",
+                        "papiers"
+                    ],
+                    "keywords_missing": [],
+                    "score_exactitude": 1.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.0,
+                    "Mots_question_trouvés": [],
+                    "score_pertinence": 0.5
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 1604.06,
+                    "score_latence": 0.5
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "direct_match",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS005",
+            "strategy": "strategy_c_qa",
+            "question_type": "direct_match",
+            "exactitude_score": 0.16666666666666666,
+            "pertinence_score": 0.5,
+            "hallucination_score": 0.8,
+            "latence_score": 0.8,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.5800000000000001,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "emballages plastiques"
+                    ],
+                    "keywords_missing": [
+                        "bouteilles",
+                        "metalliques",
+                        "conserves",
+                        "cartons",
+                        "papiers"
+                    ],
+                    "score_exactitude": 0.16666666666666666
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.0,
+                    "Mots_question_trouvés": [],
+                    "score_pertinence": 0.5
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 733.75,
+                    "score_latence": 0.8
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "direct_match",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS006",
+            "strategy": "strategy_a_llm",
+            "question_type": "direct_match",
+            "exactitude_score": 0.75,
+            "pertinence_score": 0.9166666666666667,
+            "hallucination_score": 0.8,
+            "latence_score": 0.2,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.7483333333333334,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "maprocurationgouvfr",
+                        "commissariat",
+                        "gendarmerie"
+                    ],
+                    "keywords_missing": [
+                        "meme commune"
+                    ],
+                    "score_exactitude": 0.75
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.8333333333333334,
+                    "Mots_question_trouvés": [
+                        "faire",
+                        "pour",
+                        "procuration",
+                        "une",
+                        "voter"
+                    ],
+                    "score_pertinence": 0.9166666666666667
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 2006.31,
+                    "score_latence": 0.2
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "direct_match",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS006",
+            "strategy": "strategy_b_rag",
+            "question_type": "direct_match",
+            "exactitude_score": 1.0,
+            "pertinence_score": 0.6666666666666666,
+            "hallucination_score": 0.8,
+            "latence_score": 0.5,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.8183333333333334,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "maprocurationgouvfr",
+                        "commissariat",
+                        "gendarmerie",
+                        "meme commune"
+                    ],
+                    "keywords_missing": [],
+                    "score_exactitude": 1.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.3333333333333333,
+                    "Mots_question_trouvés": [
+                        "procuration",
+                        "une"
+                    ],
+                    "score_pertinence": 0.6666666666666666
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 1185.36,
+                    "score_latence": 0.5
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "direct_match",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS006",
+            "strategy": "strategy_c_qa",
+            "question_type": "direct_match",
+            "exactitude_score": 0.0,
+            "pertinence_score": 0.5833333333333334,
+            "hallucination_score": 0.8,
+            "latence_score": 0.8,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.5466666666666667,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [
+                        "maprocurationgouvfr",
+                        "commissariat",
+                        "gendarmerie",
+                        "meme commune"
+                    ],
+                    "score_exactitude": 0.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.16666666666666666,
+                    "Mots_question_trouvés": [
+                        "une"
+                    ],
+                    "score_pertinence": 0.5833333333333334
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 802.67,
+                    "score_latence": 0.8
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "direct_match",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS007",
+            "strategy": "strategy_a_llm",
+            "question_type": "direct_match",
+            "exactitude_score": 0.25,
+            "pertinence_score": 0.8571428571428572,
+            "hallucination_score": 0.8,
+            "latence_score": 0.2,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.5864285714285715,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "dossier"
+                    ],
+                    "keywords_missing": [
+                        "relais petite enfance",
+                        "pieces didentite",
+                        "commission"
+                    ],
+                    "score_exactitude": 0.25
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.7142857142857143,
+                    "Mots_question_trouvés": [
+                        "a",
+                        "creche",
+                        "enfant",
+                        "inscrire",
+                        "la"
+                    ],
+                    "score_pertinence": 0.8571428571428572
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 2410.02,
+                    "score_latence": 0.2
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "direct_match",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS007",
+            "strategy": "strategy_b_rag",
+            "question_type": "direct_match",
+            "exactitude_score": 1.0,
+            "pertinence_score": 0.5714285714285714,
+            "hallucination_score": 0.8,
+            "latence_score": 0.5,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.7992857142857143,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "relais petite enfance",
+                        "dossier",
+                        "pieces didentite",
+                        "commission"
+                    ],
+                    "keywords_missing": [],
+                    "score_exactitude": 1.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.14285714285714285,
+                    "Mots_question_trouvés": [
+                        "creche"
+                    ],
+                    "score_pertinence": 0.5714285714285714
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 1469.44,
+                    "score_latence": 0.5
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "direct_match",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS007",
+            "strategy": "strategy_c_qa",
+            "question_type": "direct_match",
+            "exactitude_score": 1.0,
+            "pertinence_score": 0.5714285714285714,
+            "hallucination_score": 0.8,
+            "latence_score": 0.8,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.8442857142857143,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "relais petite enfance",
+                        "dossier",
+                        "pieces didentite",
+                        "commission"
+                    ],
+                    "keywords_missing": [],
+                    "score_exactitude": 1.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.14285714285714285,
+                    "Mots_question_trouvés": [
+                        "creche"
+                    ],
+                    "score_pertinence": 0.5714285714285714
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 792.99,
+                    "score_latence": 0.8
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "direct_match",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS008",
+            "strategy": "strategy_a_llm",
+            "question_type": "direct_match",
+            "exactitude_score": 0.4,
+            "pertinence_score": 0.9166666666666667,
+            "hallucination_score": 0.8,
+            "latence_score": 0.2,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.6433333333333334,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "prefecture",
+                        "statuts"
+                    ],
+                    "keywords_missing": [
+                        "greffe",
+                        "44",
+                        "journal officiel"
+                    ],
+                    "score_exactitude": 0.4
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.8333333333333334,
+                    "Mots_question_trouvés": [
+                        "1901",
+                        "association",
+                        "creer",
+                        "loi",
+                        "une"
+                    ],
+                    "score_pertinence": 0.9166666666666667
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 2150.6,
+                    "score_latence": 0.2
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "direct_match",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS008",
+            "strategy": "strategy_b_rag",
+            "question_type": "direct_match",
+            "exactitude_score": 1.0,
+            "pertinence_score": 0.5833333333333334,
+            "hallucination_score": 0.7000000000000001,
+            "latence_score": 0.8,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.8266666666666667,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "greffe",
+                        "prefecture",
+                        "statuts",
+                        "44",
+                        "journal officiel"
+                    ],
+                    "keywords_missing": [],
+                    "score_exactitude": 1.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.16666666666666666,
+                    "Mots_question_trouvés": [
+                        "une"
+                    ],
+                    "score_pertinence": 0.5833333333333334
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [
+                        "associations.gouv.fr"
+                    ],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.7000000000000001
+                },
+                "latence": {
+                    "latency_ms": 897.92,
+                    "score_latence": 0.8
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "direct_match",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS008",
+            "strategy": "strategy_c_qa",
+            "question_type": "direct_match",
+            "exactitude_score": 0.0,
+            "pertinence_score": 0.5833333333333334,
+            "hallucination_score": 0.8,
+            "latence_score": 0.5,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.5016666666666667,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [
+                        "greffe",
+                        "prefecture",
+                        "statuts",
+                        "44",
+                        "journal officiel"
+                    ],
+                    "score_exactitude": 0.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.16666666666666666,
+                    "Mots_question_trouvés": [
+                        "une"
+                    ],
+                    "score_pertinence": 0.5833333333333334
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 1048.58,
+                    "score_latence": 0.5
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "direct_match",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS009",
+            "strategy": "strategy_a_llm",
+            "question_type": "direct_match",
+            "exactitude_score": 0.0,
+            "pertinence_score": 0.9166666666666667,
+            "hallucination_score": 0.7000000000000001,
+            "latence_score": 0.5,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.5483333333333333,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [
+                        "mdph",
+                        "cerfa",
+                        "4 a 6 mois",
+                        "gratuite"
+                    ],
+                    "score_exactitude": 0.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.8333333333333334,
+                    "Mots_question_trouvés": [
+                        "carte",
+                        "inclusion",
+                        "la",
+                        "mobilite",
+                        "obtenir"
+                    ],
+                    "score_pertinence": 0.9166666666666667
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [
+                        "cfe.fr"
+                    ],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.7000000000000001
+                },
+                "latence": {
+                    "latency_ms": 1970.34,
+                    "score_latence": 0.5
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "direct_match",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS009",
+            "strategy": "strategy_b_rag",
+            "question_type": "direct_match",
+            "exactitude_score": 1.0,
+            "pertinence_score": 0.8333333333333333,
+            "hallucination_score": 0.8,
+            "latence_score": 0.5,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.8516666666666667,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "mdph",
+                        "cerfa",
+                        "4 a 6 mois",
+                        "gratuite"
+                    ],
+                    "keywords_missing": [],
+                    "score_exactitude": 1.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.6666666666666666,
+                    "Mots_question_trouvés": [
+                        "carte",
+                        "inclusion",
+                        "la",
+                        "mobilite"
+                    ],
+                    "score_pertinence": 0.8333333333333333
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 1356.88,
+                    "score_latence": 0.5
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "direct_match",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS009",
+            "strategy": "strategy_c_qa",
+            "question_type": "direct_match",
+            "exactitude_score": 1.0,
+            "pertinence_score": 0.8333333333333333,
+            "hallucination_score": 0.8,
+            "latence_score": 0.5,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.8516666666666667,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "mdph",
+                        "cerfa",
+                        "4 a 6 mois",
+                        "gratuite"
+                    ],
+                    "keywords_missing": [],
+                    "score_exactitude": 1.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.6666666666666666,
+                    "Mots_question_trouvés": [
+                        "carte",
+                        "inclusion",
+                        "la",
+                        "mobilite"
+                    ],
+                    "score_pertinence": 0.8333333333333333
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 1024.66,
+                    "score_latence": 0.5
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "direct_match",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS010",
+            "strategy": "strategy_a_llm",
+            "question_type": "direct_match",
+            "exactitude_score": 0.0,
+            "pertinence_score": 0.875,
+            "hallucination_score": 0.8,
+            "latence_score": 0.5,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.56,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [
+                        "quotient familial",
+                        "150",
+                        "550",
+                        "caf"
+                    ],
+                    "score_exactitude": 0.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.75,
+                    "Mots_question_trouvés": [
+                        "cantine",
+                        "de",
+                        "la",
+                        "les",
+                        "scolaire",
+                        "tarifs"
+                    ],
+                    "score_pertinence": 0.875
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 1061.49,
+                    "score_latence": 0.5
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "direct_match",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS010",
+            "strategy": "strategy_b_rag",
+            "question_type": "direct_match",
+            "exactitude_score": 0.5,
+            "pertinence_score": 0.5,
+            "hallucination_score": 0.8,
+            "latence_score": 0.5,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.635,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "150",
+                        "550"
+                    ],
+                    "keywords_missing": [
+                        "quotient familial",
+                        "caf"
+                    ],
+                    "score_exactitude": 0.5
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.0,
+                    "Mots_question_trouvés": [],
+                    "score_pertinence": 0.5
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 1350.86,
+                    "score_latence": 0.5
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "direct_match",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS010",
+            "strategy": "strategy_c_qa",
+            "question_type": "direct_match",
+            "exactitude_score": 0.0,
+            "pertinence_score": 0.2,
+            "hallucination_score": 0.8,
+            "latence_score": 0.8,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.4700000000000001,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [
+                        "quotient familial",
+                        "150",
+                        "550",
+                        "caf"
+                    ],
+                    "score_exactitude": 0.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 0.4,
+                    "score_lexical": 0.0,
+                    "Mots_question_trouvés": [],
+                    "score_pertinence": 0.2
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 893.5,
+                    "score_latence": 0.8
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "direct_match",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS011",
+            "strategy": "strategy_a_llm",
+            "question_type": "reformulation",
+            "exactitude_score": 0.75,
+            "pertinence_score": 0.8125,
+            "hallucination_score": 0.6000000000000001,
+            "latence_score": 0.2,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.6875,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "servicepublicfr",
+                        "mairie",
+                        "lieu de naissance"
+                    ],
+                    "keywords_missing": [
+                        "gratuit"
+                    ],
+                    "score_exactitude": 0.75
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.625,
+                    "Mots_question_trouvés": [
+                        "de",
+                        "extrait",
+                        "faire",
+                        "naissance",
+                        "un"
+                    ],
+                    "score_pertinence": 0.8125
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [
+                        "service-public.fr",
+                        "service-public.fr"
+                    ],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.6000000000000001
+                },
+                "latence": {
+                    "latency_ms": 2192.99,
+                    "score_latence": 0.2
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "reformulation",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS011",
+            "strategy": "strategy_b_rag",
+            "question_type": "reformulation",
+            "exactitude_score": 1.0,
+            "pertinence_score": 0.8125,
+            "hallucination_score": 0.7000000000000001,
+            "latence_score": 0.5,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.8275,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "servicepublicfr",
+                        "mairie",
+                        "lieu de naissance",
+                        "gratuit"
+                    ],
+                    "keywords_missing": [],
+                    "score_exactitude": 1.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.625,
+                    "Mots_question_trouvés": [
+                        "de",
+                        "extrait",
+                        "faire",
+                        "naissance",
+                        "un"
+                    ],
+                    "score_pertinence": 0.8125
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [
+                        "service-public.fr"
+                    ],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.7000000000000001
+                },
+                "latence": {
+                    "latency_ms": 1447.7,
+                    "score_latence": 0.5
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "reformulation",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS011",
+            "strategy": "strategy_c_qa",
+            "question_type": "reformulation",
+            "exactitude_score": 0.0,
+            "pertinence_score": 0.5625,
+            "hallucination_score": 0.8,
+            "latence_score": 0.8,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.5425,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [
+                        "servicepublicfr",
+                        "mairie",
+                        "lieu de naissance",
+                        "gratuit"
+                    ],
+                    "score_exactitude": 0.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.125,
+                    "Mots_question_trouvés": [
+                        "faire"
+                    ],
+                    "score_pertinence": 0.5625
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 744.75,
+                    "score_latence": 0.8
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "reformulation",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS012",
+            "strategy": "strategy_a_llm",
+            "question_type": "reformulation",
+            "exactitude_score": 0.4,
+            "pertinence_score": 0.875,
+            "hallucination_score": 0.8,
+            "latence_score": 0.5,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.68,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "mardi",
+                        "vendredi"
+                    ],
+                    "keywords_missing": [
+                        "mercredi",
+                        "centreville",
+                        "peripherie"
+                    ],
+                    "score_exactitude": 0.4
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.75,
+                    "Mots_question_trouvés": [
+                        "de",
+                        "des",
+                        "jours",
+                        "les",
+                        "poubelles",
+                        "ramassage"
+                    ],
+                    "score_pertinence": 0.875
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 1461.49,
+                    "score_latence": 0.5
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "reformulation",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS012",
+            "strategy": "strategy_b_rag",
+            "question_type": "reformulation",
+            "exactitude_score": 0.0,
+            "pertinence_score": 0.5,
+            "hallucination_score": 0.8,
+            "latence_score": 1.0,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.56,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [
+                        "mardi",
+                        "vendredi",
+                        "mercredi",
+                        "centreville",
+                        "peripherie"
+                    ],
+                    "score_exactitude": 0.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.0,
+                    "Mots_question_trouvés": [],
+                    "score_pertinence": 0.5
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 89.46,
+                    "score_latence": 1.0
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "reformulation",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS012",
+            "strategy": "strategy_c_qa",
+            "question_type": "reformulation",
+            "exactitude_score": 0.0,
+            "pertinence_score": 0.625,
+            "hallucination_score": 0.8,
+            "latence_score": 0.8,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.555,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [
+                        "mardi",
+                        "vendredi",
+                        "mercredi",
+                        "centreville",
+                        "peripherie"
+                    ],
+                    "score_exactitude": 0.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.25,
+                    "Mots_question_trouvés": [
+                        "de",
+                        "les"
+                    ],
+                    "score_pertinence": 0.625
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 888.97,
+                    "score_latence": 0.8
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "reformulation",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS013",
+            "strategy": "strategy_a_llm",
+            "question_type": "reformulation",
+            "exactitude_score": 0.8,
+            "pertinence_score": 0.8333333333333333,
+            "hallucination_score": 0.8,
+            "latence_score": 0.2,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.7466666666666667,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "emballages",
+                        "plastique",
+                        "metal",
+                        "carton"
+                    ],
+                    "keywords_missing": [
+                        "papier"
+                    ],
+                    "score_exactitude": 0.8
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.6666666666666666,
+                    "Mots_question_trouvés": [
+                        "dans",
+                        "de",
+                        "jeter",
+                        "la",
+                        "poubelle",
+                        "recyclage"
+                    ],
+                    "score_pertinence": 0.8333333333333333
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 2218.43,
+                    "score_latence": 0.2
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "reformulation",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS013",
+            "strategy": "strategy_b_rag",
+            "question_type": "reformulation",
+            "exactitude_score": 0.0,
+            "pertinence_score": 0.375,
+            "hallucination_score": 0.8,
+            "latence_score": 0.8,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.505,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [
+                        "emballages",
+                        "plastique",
+                        "metal",
+                        "carton",
+                        "papier"
+                    ],
+                    "score_exactitude": 0.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 0.75,
+                    "score_lexical": 0.0,
+                    "Mots_question_trouvés": [],
+                    "score_pertinence": 0.375
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 548.73,
+                    "score_latence": 0.8
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "reformulation",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS013",
+            "strategy": "strategy_c_qa",
+            "question_type": "reformulation",
+            "exactitude_score": 0.0,
+            "pertinence_score": 0.6666666666666666,
+            "hallucination_score": 0.8,
+            "latence_score": 0.8,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.5633333333333334,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [
+                        "emballages",
+                        "plastique",
+                        "metal",
+                        "carton",
+                        "papier"
+                    ],
+                    "score_exactitude": 0.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.3333333333333333,
+                    "Mots_question_trouvés": [
+                        "dans",
+                        "de",
+                        "la"
+                    ],
+                    "score_pertinence": 0.6666666666666666
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 818.91,
+                    "score_latence": 0.8
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "reformulation",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS014",
+            "strategy": "strategy_a_llm",
+            "question_type": "reformulation",
+            "exactitude_score": 0.75,
+            "pertinence_score": 0.6666666666666666,
+            "hallucination_score": 0.8,
+            "latence_score": 0.2,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.6983333333333334,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "ants",
+                        "duplicata",
+                        "photo"
+                    ],
+                    "keywords_missing": [
+                        "25"
+                    ],
+                    "score_exactitude": 0.75
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.3333333333333333,
+                    "Mots_question_trouvés": [
+                        "conduire",
+                        "de",
+                        "permis"
+                    ],
+                    "score_pertinence": 0.6666666666666666
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 2128.84,
+                    "score_latence": 0.2
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "reformulation",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS014",
+            "strategy": "strategy_b_rag",
+            "question_type": "reformulation",
+            "exactitude_score": 1.0,
+            "pertinence_score": 0.5555555555555556,
+            "hallucination_score": 0.7000000000000001,
+            "latence_score": 0.5,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.7761111111111111,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "ants",
+                        "duplicata",
+                        "photo",
+                        "25"
+                    ],
+                    "keywords_missing": [],
+                    "score_exactitude": 1.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.1111111111111111,
+                    "Mots_question_trouvés": [
+                        "de"
+                    ],
+                    "score_pertinence": 0.5555555555555556
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [
+                        "ants.gouv.fr"
+                    ],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.7000000000000001
+                },
+                "latence": {
+                    "latency_ms": 1176.77,
+                    "score_latence": 0.5
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "reformulation",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS014",
+            "strategy": "strategy_c_qa",
+            "question_type": "reformulation",
+            "exactitude_score": 1.0,
+            "pertinence_score": 0.6666666666666666,
+            "hallucination_score": 0.7000000000000001,
+            "latence_score": 0.5,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.7983333333333333,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "ants",
+                        "duplicata",
+                        "photo",
+                        "25"
+                    ],
+                    "keywords_missing": [],
+                    "score_exactitude": 1.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.3333333333333333,
+                    "Mots_question_trouvés": [
+                        "conduire",
+                        "de",
+                        "permis"
+                    ],
+                    "score_pertinence": 0.6666666666666666
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [
+                        "ants.gouv.fr"
+                    ],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.7000000000000001
+                },
+                "latence": {
+                    "latency_ms": 1060.67,
+                    "score_latence": 0.5
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "reformulation",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS015",
+            "strategy": "strategy_a_llm",
+            "question_type": "reformulation",
+            "exactitude_score": 0.75,
+            "pertinence_score": 0.75,
+            "hallucination_score": 0.7000000000000001,
+            "latence_score": 0.2,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.6950000000000001,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "impotsgouvfr",
+                        "profil",
+                        "declaration"
+                    ],
+                    "keywords_missing": [
+                        "servicepublicfr"
+                    ],
+                    "score_exactitude": 0.75
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.5,
+                    "Mots_question_trouvés": [
+                        "impots",
+                        "les",
+                        "prevenir"
+                    ],
+                    "score_pertinence": 0.75
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [
+                        "impôts.gouv.fr"
+                    ],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.7000000000000001
+                },
+                "latence": {
+                    "latency_ms": 2380.92,
+                    "score_latence": 0.2
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "reformulation",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS015",
+            "strategy": "strategy_b_rag",
+            "question_type": "reformulation",
+            "exactitude_score": 1.0,
+            "pertinence_score": 0.5833333333333334,
+            "hallucination_score": 0.7000000000000001,
+            "latence_score": 0.8,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.8266666666666667,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "impotsgouvfr",
+                        "profil",
+                        "declaration",
+                        "servicepublicfr"
+                    ],
+                    "keywords_missing": [],
+                    "score_exactitude": 1.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.16666666666666666,
+                    "Mots_question_trouvés": [
+                        "je"
+                    ],
+                    "score_pertinence": 0.5833333333333334
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [
+                        "service-public.fr"
+                    ],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.7000000000000001
+                },
+                "latence": {
+                    "latency_ms": 980.07,
+                    "score_latence": 0.8
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "reformulation",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS015",
+            "strategy": "strategy_c_qa",
+            "question_type": "reformulation",
+            "exactitude_score": 1.0,
+            "pertinence_score": 0.5833333333333334,
+            "hallucination_score": 0.7000000000000001,
+            "latence_score": 0.8,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.8266666666666667,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "impotsgouvfr",
+                        "profil",
+                        "declaration",
+                        "servicepublicfr"
+                    ],
+                    "keywords_missing": [],
+                    "score_exactitude": 1.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.16666666666666666,
+                    "Mots_question_trouvés": [
+                        "je"
+                    ],
+                    "score_pertinence": 0.5833333333333334
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [
+                        "service-public.fr"
+                    ],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.7000000000000001
+                },
+                "latence": {
+                    "latency_ms": 921.96,
+                    "score_latence": 0.8
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "reformulation",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS016",
+            "strategy": "strategy_a_llm",
+            "question_type": "reformulation",
+            "exactitude_score": 0.8,
+            "pertinence_score": 0.8,
+            "hallucination_score": 0.8,
+            "latence_score": 0.2,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.7400000000000001,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "obligatoire",
+                        "3 ans",
+                        "janvier",
+                        "mairie"
+                    ],
+                    "keywords_missing": [
+                        "mars"
+                    ],
+                    "score_exactitude": 0.8
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.6,
+                    "Mots_question_trouvés": [
+                        "3",
+                        "a",
+                        "ans",
+                        "fille",
+                        "la",
+                        "maternelle"
+                    ],
+                    "score_pertinence": 0.8
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 2265.77,
+                    "score_latence": 0.2
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "reformulation",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS016",
+            "strategy": "strategy_b_rag",
+            "question_type": "reformulation",
+            "exactitude_score": 1.0,
+            "pertinence_score": 0.75,
+            "hallucination_score": 0.8,
+            "latence_score": 0.8,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.8800000000000001,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "obligatoire",
+                        "3 ans",
+                        "janvier",
+                        "mars",
+                        "mairie"
+                    ],
+                    "keywords_missing": [],
+                    "score_exactitude": 1.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.5,
+                    "Mots_question_trouvés": [
+                        "3",
+                        "a",
+                        "ans",
+                        "la",
+                        "maternelle"
+                    ],
+                    "score_pertinence": 0.75
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 875.68,
+                    "score_latence": 0.8
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "reformulation",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS016",
+            "strategy": "strategy_c_qa",
+            "question_type": "reformulation",
+            "exactitude_score": 1.0,
+            "pertinence_score": 0.75,
+            "hallucination_score": 0.8,
+            "latence_score": 0.8,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.8800000000000001,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "obligatoire",
+                        "3 ans",
+                        "janvier",
+                        "mars",
+                        "mairie"
+                    ],
+                    "keywords_missing": [],
+                    "score_exactitude": 1.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.5,
+                    "Mots_question_trouvés": [
+                        "3",
+                        "a",
+                        "ans",
+                        "la",
+                        "maternelle"
+                    ],
+                    "score_pertinence": 0.75
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 903.16,
+                    "score_latence": 0.8
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "reformulation",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS017",
+            "strategy": "strategy_a_llm",
+            "question_type": "reformulation",
+            "exactitude_score": 0.6,
+            "pertinence_score": 0.6923076923076923,
+            "hallucination_score": 0.6000000000000001,
+            "latence_score": 0.5,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.6634615384615384,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "certificat",
+                        "ants",
+                        "gratuit"
+                    ],
+                    "keywords_missing": [
+                        "situation administrative",
+                        "histovec"
+                    ],
+                    "score_exactitude": 0.6
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.38461538461538464,
+                    "Mots_question_trouvés": [
+                        "de",
+                        "il",
+                        "nongage",
+                        "vendre",
+                        "voiture"
+                    ],
+                    "score_pertinence": 0.6923076923076923
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [
+                        "ants.gouv.fr",
+                        "ants.gouv.fr"
+                    ],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.6000000000000001
+                },
+                "latence": {
+                    "latency_ms": 1961.85,
+                    "score_latence": 0.5
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "reformulation",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS017",
+            "strategy": "strategy_b_rag",
+            "question_type": "reformulation",
+            "exactitude_score": 1.0,
+            "pertinence_score": 0.6153846153846154,
+            "hallucination_score": 0.6000000000000001,
+            "latence_score": 0.5,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.7680769230769231,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "certificat",
+                        "situation administrative",
+                        "ants",
+                        "histovec",
+                        "gratuit"
+                    ],
+                    "keywords_missing": [],
+                    "score_exactitude": 1.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.23076923076923078,
+                    "Mots_question_trouvés": [
+                        "de",
+                        "il",
+                        "nongage"
+                    ],
+                    "score_pertinence": 0.6153846153846154
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [
+                        "ants.gouv.fr",
+                        "interieur.gouv.fr"
+                    ],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.6000000000000001
+                },
+                "latence": {
+                    "latency_ms": 1184.02,
+                    "score_latence": 0.5
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "reformulation",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS017",
+            "strategy": "strategy_c_qa",
+            "question_type": "reformulation",
+            "exactitude_score": 1.0,
+            "pertinence_score": 0.6153846153846154,
+            "hallucination_score": 0.6000000000000001,
+            "latence_score": 0.8,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.8130769230769231,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "certificat",
+                        "situation administrative",
+                        "ants",
+                        "histovec",
+                        "gratuit"
+                    ],
+                    "keywords_missing": [],
+                    "score_exactitude": 1.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.23076923076923078,
+                    "Mots_question_trouvés": [
+                        "de",
+                        "il",
+                        "nongage"
+                    ],
+                    "score_pertinence": 0.6153846153846154
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [
+                        "ants.gouv.fr",
+                        "interieur.gouv.fr"
+                    ],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.6000000000000001
+                },
+                "latence": {
+                    "latency_ms": 836.82,
+                    "score_latence": 0.8
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "reformulation",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS018",
+            "strategy": "strategy_a_llm",
+            "question_type": "reformulation",
+            "exactitude_score": 0.0,
+            "pertinence_score": 0.8928571428571428,
+            "hallucination_score": 0.8,
+            "latence_score": 0.5,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.5635714285714286,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [
+                        "remi",
+                        "application",
+                        "office de tourisme",
+                        "mairie"
+                    ],
+                    "score_exactitude": 0.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.7857142857142857,
+                    "Mots_question_trouvés": [
+                        "a",
+                        "bus",
+                        "chez",
+                        "des",
+                        "horaires",
+                        "il",
+                        "les",
+                        "ou",
+                        "passent",
+                        "qui",
+                        "y"
+                    ],
+                    "score_pertinence": 0.8928571428571428
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 1370.07,
+                    "score_latence": 0.5
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "reformulation",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS018",
+            "strategy": "strategy_b_rag",
+            "question_type": "reformulation",
+            "exactitude_score": 1.0,
+            "pertinence_score": 0.6428571428571428,
+            "hallucination_score": 0.7000000000000001,
+            "latence_score": 0.8,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.8385714285714285,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "remi",
+                        "application",
+                        "office de tourisme",
+                        "mairie"
+                    ],
+                    "keywords_missing": [],
+                    "score_exactitude": 1.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.2857142857142857,
+                    "Mots_question_trouvés": [
+                        "a",
+                        "bus",
+                        "horaires",
+                        "les"
+                    ],
+                    "score_pertinence": 0.6428571428571428
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [
+                        "remi-centrevaldeloire.fr"
+                    ],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.7000000000000001
+                },
+                "latence": {
+                    "latency_ms": 980.03,
+                    "score_latence": 0.8
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "reformulation",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS018",
+            "strategy": "strategy_c_qa",
+            "question_type": "reformulation",
+            "exactitude_score": 0.5,
+            "pertinence_score": 0.5,
+            "hallucination_score": 0.8,
+            "latence_score": 0.8,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.68,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "remi",
+                        "application"
+                    ],
+                    "keywords_missing": [
+                        "office de tourisme",
+                        "mairie"
+                    ],
+                    "score_exactitude": 0.5
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.0,
+                    "Mots_question_trouvés": [],
+                    "score_pertinence": 0.5
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 704.97,
+                    "score_latence": 0.8
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "reformulation",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS019",
+            "strategy": "strategy_a_llm",
+            "question_type": "reformulation",
+            "exactitude_score": 0.5,
+            "pertinence_score": 0.8181818181818181,
+            "hallucination_score": 0.8,
+            "latence_score": 0.5,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.6986363636363636,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "service des eaux",
+                        "telephone"
+                    ],
+                    "keywords_missing": [
+                        "urgence",
+                        "24h24"
+                    ],
+                    "score_exactitude": 0.5
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.6363636363636364,
+                    "Mots_question_trouvés": [
+                        "a",
+                        "dans",
+                        "deau",
+                        "fuite",
+                        "la",
+                        "rue",
+                        "une"
+                    ],
+                    "score_pertinence": 0.8181818181818181
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 1991.5,
+                    "score_latence": 0.5
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "reformulation",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS019",
+            "strategy": "strategy_b_rag",
+            "question_type": "reformulation",
+            "exactitude_score": 0.75,
+            "pertinence_score": 0.6363636363636364,
+            "hallucination_score": 0.8,
+            "latence_score": 0.5,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.7372727272727273,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "service des eaux",
+                        "urgence",
+                        "24h24"
+                    ],
+                    "keywords_missing": [
+                        "telephone"
+                    ],
+                    "score_exactitude": 0.75
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.2727272727272727,
+                    "Mots_question_trouvés": [
+                        "fuite",
+                        "la",
+                        "une"
+                    ],
+                    "score_pertinence": 0.6363636363636364
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 1229.85,
+                    "score_latence": 0.5
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "reformulation",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS019",
+            "strategy": "strategy_c_qa",
+            "question_type": "reformulation",
+            "exactitude_score": 0.0,
+            "pertinence_score": 0.5909090909090909,
+            "hallucination_score": 0.8,
+            "latence_score": 0.8,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.5481818181818182,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [
+                        "service des eaux",
+                        "telephone",
+                        "urgence",
+                        "24h24"
+                    ],
+                    "score_exactitude": 0.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.18181818181818182,
+                    "Mots_question_trouvés": [
+                        "fuite",
+                        "une"
+                    ],
+                    "score_pertinence": 0.5909090909090909
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 745.87,
+                    "score_latence": 0.8
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "reformulation",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS020",
+            "strategy": "strategy_a_llm",
+            "question_type": "reformulation",
+            "exactitude_score": 0.0,
+            "pertinence_score": 0.5833333333333334,
+            "hallucination_score": 0.8,
+            "latence_score": 1.0,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.5766666666666668,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [
+                        "piece didentite",
+                        "justificatif de domicile",
+                        "acte de naissance",
+                        "temoins",
+                        "1 mois"
+                    ],
+                    "score_exactitude": 0.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.16666666666666666,
+                    "Mots_question_trouvés": [
+                        "le",
+                        "pour"
+                    ],
+                    "score_pertinence": 0.5833333333333334
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 229.88,
+                    "score_latence": 1.0
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "reformulation",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS020",
+            "strategy": "strategy_b_rag",
+            "question_type": "reformulation",
+            "exactitude_score": 0.0,
+            "pertinence_score": 0.5,
+            "hallucination_score": 0.8,
+            "latence_score": 1.0,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.56,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [
+                        "piece didentite",
+                        "justificatif de domicile",
+                        "acte de naissance",
+                        "temoins",
+                        "1 mois"
+                    ],
+                    "score_exactitude": 0.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.0,
+                    "Mots_question_trouvés": [],
+                    "score_pertinence": 0.5
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 246.36,
+                    "score_latence": 1.0
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "reformulation",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS020",
+            "strategy": "strategy_c_qa",
+            "question_type": "reformulation",
+            "exactitude_score": 0.0,
+            "pertinence_score": 0.7083333333333334,
+            "hallucination_score": 0.8,
+            "latence_score": 0.8,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.5716666666666668,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [
+                        "piece didentite",
+                        "justificatif de domicile",
+                        "acte de naissance",
+                        "temoins",
+                        "1 mois"
+                    ],
+                    "score_exactitude": 0.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.4166666666666667,
+                    "Mots_question_trouvés": [
+                        "a",
+                        "des",
+                        "la",
+                        "le",
+                        "pour"
+                    ],
+                    "score_pertinence": 0.7083333333333334
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 794.91,
+                    "score_latence": 0.8
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "reformulation",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS021",
+            "strategy": "strategy_a_llm",
+            "question_type": "hors_sujet",
+            "exactitude_score": 1.0,
+            "pertinence_score": 1.0,
+            "hallucination_score": 1.0,
+            "latence_score": 1.0,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 1.0,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [],
+                    "score_exactitude": 1.0
+                },
+                "pertinence": {
+                    "pertinence": "aveu d'ignorance détecté",
+                    "has_ignorance": true,
+                    "score_pertinence": 1.0
+                },
+                "hallucination": {
+                    "hallucination": "aveu d'ignorance détecté",
+                    "has_ignorance": true,
+                    "score_hallucination": 1.0
+                },
+                "latence": {
+                    "latency_ms": 117.89,
+                    "score_latence": 1.0
+                },
+                "aveu_ignorance": {
+                    "applicable": true,
+                    "type": "hors_sujet",
+                    "has_ignorance": true,
+                    "matched_expression": "je ne peux pas repondre",
+                    "reason": "Aveu d'ignorance détecté !"
+                }
+            }
+        },
+        {
+            "question_id": "GS021",
+            "strategy": "strategy_b_rag",
+            "question_type": "hors_sujet",
+            "exactitude_score": 1.0,
+            "pertinence_score": 0.0,
+            "hallucination_score": 0.0,
+            "latence_score": 1.0,
+            "aveu_ignorance_score": 0.0,
+            "score_global": 0.44999999999999996,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [],
+                    "score_exactitude": 1.0
+                },
+                "pertinence": {
+                    "pertinence": "réponse avec contenu et non pertinente",
+                    "has_ignorance": false,
+                    "score_pertinence": 0.0
+                },
+                "hallucination": {
+                    "hallucination": "réponse avec contenu inventé",
+                    "has_ignorance": false,
+                    "score_hallucination": 0.0
+                },
+                "latence": {
+                    "latency_ms": 35.7,
+                    "score_latence": 1.0
+                },
+                "aveu_ignorance": {
+                    "applicable": true,
+                    "type": "hors_sujet",
+                    "has_ignorance": false,
+                    "matched_expression": null,
+                    "reason": "la question n'est pas reconnu comme hors-sujet"
+                }
+            }
+        },
+        {
+            "question_id": "GS021",
+            "strategy": "strategy_c_qa",
+            "question_type": "hors_sujet",
+            "exactitude_score": 1.0,
+            "pertinence_score": 0.0,
+            "hallucination_score": 0.0,
+            "latence_score": 0.8,
+            "aveu_ignorance_score": 0.0,
+            "score_global": 0.42,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [],
+                    "score_exactitude": 1.0
+                },
+                "pertinence": {
+                    "pertinence": "réponse avec contenu et non pertinente",
+                    "has_ignorance": false,
+                    "score_pertinence": 0.0
+                },
+                "hallucination": {
+                    "hallucination": "réponse avec contenu inventé",
+                    "has_ignorance": false,
+                    "score_hallucination": 0.0
+                },
+                "latence": {
+                    "latency_ms": 864.49,
+                    "score_latence": 0.8
+                },
+                "aveu_ignorance": {
+                    "applicable": true,
+                    "type": "hors_sujet",
+                    "has_ignorance": false,
+                    "matched_expression": null,
+                    "reason": "la question n'est pas reconnu comme hors-sujet"
+                }
+            }
+        },
+        {
+            "question_id": "GS022",
+            "strategy": "strategy_a_llm",
+            "question_type": "hors_sujet",
+            "exactitude_score": 1.0,
+            "pertinence_score": 1.0,
+            "hallucination_score": 1.0,
+            "latence_score": 1.0,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 1.0,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [],
+                    "score_exactitude": 1.0
+                },
+                "pertinence": {
+                    "pertinence": "aveu d'ignorance détecté",
+                    "has_ignorance": true,
+                    "score_pertinence": 1.0
+                },
+                "hallucination": {
+                    "hallucination": "aveu d'ignorance détecté",
+                    "has_ignorance": true,
+                    "score_hallucination": 1.0
+                },
+                "latence": {
+                    "latency_ms": 121.95,
+                    "score_latence": 1.0
+                },
+                "aveu_ignorance": {
+                    "applicable": true,
+                    "type": "hors_sujet",
+                    "has_ignorance": true,
+                    "matched_expression": "je ne peux pas repondre",
+                    "reason": "Aveu d'ignorance détecté !"
+                }
+            }
+        },
+        {
+            "question_id": "GS022",
+            "strategy": "strategy_b_rag",
+            "question_type": "hors_sujet",
+            "exactitude_score": 1.0,
+            "pertinence_score": 0.0,
+            "hallucination_score": 0.0,
+            "latence_score": 1.0,
+            "aveu_ignorance_score": 0.0,
+            "score_global": 0.44999999999999996,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [],
+                    "score_exactitude": 1.0
+                },
+                "pertinence": {
+                    "pertinence": "réponse avec contenu et non pertinente",
+                    "has_ignorance": false,
+                    "score_pertinence": 0.0
+                },
+                "hallucination": {
+                    "hallucination": "réponse avec contenu inventé",
+                    "has_ignorance": false,
+                    "score_hallucination": 0.0
+                },
+                "latence": {
+                    "latency_ms": 36.64,
+                    "score_latence": 1.0
+                },
+                "aveu_ignorance": {
+                    "applicable": true,
+                    "type": "hors_sujet",
+                    "has_ignorance": false,
+                    "matched_expression": null,
+                    "reason": "la question n'est pas reconnu comme hors-sujet"
+                }
+            }
+        },
+        {
+            "question_id": "GS022",
+            "strategy": "strategy_c_qa",
+            "question_type": "hors_sujet",
+            "exactitude_score": 1.0,
+            "pertinence_score": 0.0,
+            "hallucination_score": 0.0,
+            "latence_score": 0.8,
+            "aveu_ignorance_score": 0.0,
+            "score_global": 0.42,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [],
+                    "score_exactitude": 1.0
+                },
+                "pertinence": {
+                    "pertinence": "réponse avec contenu et non pertinente",
+                    "has_ignorance": false,
+                    "score_pertinence": 0.0
+                },
+                "hallucination": {
+                    "hallucination": "réponse avec contenu inventé",
+                    "has_ignorance": false,
+                    "score_hallucination": 0.0
+                },
+                "latence": {
+                    "latency_ms": 769.75,
+                    "score_latence": 0.8
+                },
+                "aveu_ignorance": {
+                    "applicable": true,
+                    "type": "hors_sujet",
+                    "has_ignorance": false,
+                    "matched_expression": null,
+                    "reason": "la question n'est pas reconnu comme hors-sujet"
+                }
+            }
+        },
+        {
+            "question_id": "GS023",
+            "strategy": "strategy_a_llm",
+            "question_type": "hors_sujet",
+            "exactitude_score": 1.0,
+            "pertinence_score": 1.0,
+            "hallucination_score": 1.0,
+            "latence_score": 1.0,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 1.0,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [],
+                    "score_exactitude": 1.0
+                },
+                "pertinence": {
+                    "pertinence": "aveu d'ignorance détecté",
+                    "has_ignorance": true,
+                    "score_pertinence": 1.0
+                },
+                "hallucination": {
+                    "hallucination": "aveu d'ignorance détecté",
+                    "has_ignorance": true,
+                    "score_hallucination": 1.0
+                },
+                "latence": {
+                    "latency_ms": 118.19,
+                    "score_latence": 1.0
+                },
+                "aveu_ignorance": {
+                    "applicable": true,
+                    "type": "hors_sujet",
+                    "has_ignorance": true,
+                    "matched_expression": "je ne peux pas repondre",
+                    "reason": "Aveu d'ignorance détecté !"
+                }
+            }
+        },
+        {
+            "question_id": "GS023",
+            "strategy": "strategy_b_rag",
+            "question_type": "hors_sujet",
+            "exactitude_score": 1.0,
+            "pertinence_score": 0.0,
+            "hallucination_score": 0.0,
+            "latence_score": 1.0,
+            "aveu_ignorance_score": 0.0,
+            "score_global": 0.44999999999999996,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [],
+                    "score_exactitude": 1.0
+                },
+                "pertinence": {
+                    "pertinence": "réponse avec contenu et non pertinente",
+                    "has_ignorance": false,
+                    "score_pertinence": 0.0
+                },
+                "hallucination": {
+                    "hallucination": "réponse avec contenu inventé",
+                    "has_ignorance": false,
+                    "score_hallucination": 0.0
+                },
+                "latence": {
+                    "latency_ms": 36.18,
+                    "score_latence": 1.0
+                },
+                "aveu_ignorance": {
+                    "applicable": true,
+                    "type": "hors_sujet",
+                    "has_ignorance": false,
+                    "matched_expression": null,
+                    "reason": "la question n'est pas reconnu comme hors-sujet"
+                }
+            }
+        },
+        {
+            "question_id": "GS023",
+            "strategy": "strategy_c_qa",
+            "question_type": "hors_sujet",
+            "exactitude_score": 1.0,
+            "pertinence_score": 0.0,
+            "hallucination_score": 0.0,
+            "latence_score": 0.8,
+            "aveu_ignorance_score": 0.0,
+            "score_global": 0.42,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [],
+                    "score_exactitude": 1.0
+                },
+                "pertinence": {
+                    "pertinence": "réponse avec contenu et non pertinente",
+                    "has_ignorance": false,
+                    "score_pertinence": 0.0
+                },
+                "hallucination": {
+                    "hallucination": "réponse avec contenu inventé",
+                    "has_ignorance": false,
+                    "score_hallucination": 0.0
+                },
+                "latence": {
+                    "latency_ms": 666.83,
+                    "score_latence": 0.8
+                },
+                "aveu_ignorance": {
+                    "applicable": true,
+                    "type": "hors_sujet",
+                    "has_ignorance": false,
+                    "matched_expression": null,
+                    "reason": "la question n'est pas reconnu comme hors-sujet"
+                }
+            }
+        },
+        {
+            "question_id": "GS024",
+            "strategy": "strategy_a_llm",
+            "question_type": "hors_sujet",
+            "exactitude_score": 1.0,
+            "pertinence_score": 1.0,
+            "hallucination_score": 1.0,
+            "latence_score": 1.0,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 1.0,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [],
+                    "score_exactitude": 1.0
+                },
+                "pertinence": {
+                    "pertinence": "aveu d'ignorance détecté",
+                    "has_ignorance": true,
+                    "score_pertinence": 1.0
+                },
+                "hallucination": {
+                    "hallucination": "aveu d'ignorance détecté",
+                    "has_ignorance": true,
+                    "score_hallucination": 1.0
+                },
+                "latence": {
+                    "latency_ms": 116.21,
+                    "score_latence": 1.0
+                },
+                "aveu_ignorance": {
+                    "applicable": true,
+                    "type": "hors_sujet",
+                    "has_ignorance": true,
+                    "matched_expression": "je ne peux pas repondre",
+                    "reason": "Aveu d'ignorance détecté !"
+                }
+            }
+        },
+        {
+            "question_id": "GS024",
+            "strategy": "strategy_b_rag",
+            "question_type": "hors_sujet",
+            "exactitude_score": 1.0,
+            "pertinence_score": 0.0,
+            "hallucination_score": 0.0,
+            "latence_score": 1.0,
+            "aveu_ignorance_score": 0.0,
+            "score_global": 0.44999999999999996,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [],
+                    "score_exactitude": 1.0
+                },
+                "pertinence": {
+                    "pertinence": "réponse avec contenu et non pertinente",
+                    "has_ignorance": false,
+                    "score_pertinence": 0.0
+                },
+                "hallucination": {
+                    "hallucination": "réponse avec contenu inventé",
+                    "has_ignorance": false,
+                    "score_hallucination": 0.0
+                },
+                "latence": {
+                    "latency_ms": 246.32,
+                    "score_latence": 1.0
+                },
+                "aveu_ignorance": {
+                    "applicable": true,
+                    "type": "hors_sujet",
+                    "has_ignorance": false,
+                    "matched_expression": null,
+                    "reason": "la question n'est pas reconnu comme hors-sujet"
+                }
+            }
+        },
+        {
+            "question_id": "GS024",
+            "strategy": "strategy_c_qa",
+            "question_type": "hors_sujet",
+            "exactitude_score": 1.0,
+            "pertinence_score": 0.0,
+            "hallucination_score": 0.0,
+            "latence_score": 0.8,
+            "aveu_ignorance_score": 0.0,
+            "score_global": 0.42,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [],
+                    "score_exactitude": 1.0
+                },
+                "pertinence": {
+                    "pertinence": "réponse avec contenu et non pertinente",
+                    "has_ignorance": false,
+                    "score_pertinence": 0.0
+                },
+                "hallucination": {
+                    "hallucination": "réponse avec contenu inventé",
+                    "has_ignorance": false,
+                    "score_hallucination": 0.0
+                },
+                "latence": {
+                    "latency_ms": 657.67,
+                    "score_latence": 0.8
+                },
+                "aveu_ignorance": {
+                    "applicable": true,
+                    "type": "hors_sujet",
+                    "has_ignorance": false,
+                    "matched_expression": null,
+                    "reason": "la question n'est pas reconnu comme hors-sujet"
+                }
+            }
+        },
+        {
+            "question_id": "GS025",
+            "strategy": "strategy_a_llm",
+            "question_type": "hors_sujet",
+            "exactitude_score": 1.0,
+            "pertinence_score": 1.0,
+            "hallucination_score": 1.0,
+            "latence_score": 1.0,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 1.0,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [],
+                    "score_exactitude": 1.0
+                },
+                "pertinence": {
+                    "pertinence": "aveu d'ignorance détecté",
+                    "has_ignorance": true,
+                    "score_pertinence": 1.0
+                },
+                "hallucination": {
+                    "hallucination": "aveu d'ignorance détecté",
+                    "has_ignorance": true,
+                    "score_hallucination": 1.0
+                },
+                "latence": {
+                    "latency_ms": 114.15,
+                    "score_latence": 1.0
+                },
+                "aveu_ignorance": {
+                    "applicable": true,
+                    "type": "hors_sujet",
+                    "has_ignorance": true,
+                    "matched_expression": "je ne peux pas repondre",
+                    "reason": "Aveu d'ignorance détecté !"
+                }
+            }
+        },
+        {
+            "question_id": "GS025",
+            "strategy": "strategy_b_rag",
+            "question_type": "hors_sujet",
+            "exactitude_score": 1.0,
+            "pertinence_score": 0.0,
+            "hallucination_score": 0.0,
+            "latence_score": 1.0,
+            "aveu_ignorance_score": 0.0,
+            "score_global": 0.44999999999999996,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [],
+                    "score_exactitude": 1.0
+                },
+                "pertinence": {
+                    "pertinence": "réponse avec contenu et non pertinente",
+                    "has_ignorance": false,
+                    "score_pertinence": 0.0
+                },
+                "hallucination": {
+                    "hallucination": "réponse avec contenu inventé",
+                    "has_ignorance": false,
+                    "score_hallucination": 0.0
+                },
+                "latence": {
+                    "latency_ms": 21.4,
+                    "score_latence": 1.0
+                },
+                "aveu_ignorance": {
+                    "applicable": true,
+                    "type": "hors_sujet",
+                    "has_ignorance": false,
+                    "matched_expression": null,
+                    "reason": "la question n'est pas reconnu comme hors-sujet"
+                }
+            }
+        },
+        {
+            "question_id": "GS025",
+            "strategy": "strategy_c_qa",
+            "question_type": "hors_sujet",
+            "exactitude_score": 1.0,
+            "pertinence_score": 0.0,
+            "hallucination_score": 0.0,
+            "latence_score": 0.8,
+            "aveu_ignorance_score": 0.0,
+            "score_global": 0.42,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [],
+                    "score_exactitude": 1.0
+                },
+                "pertinence": {
+                    "pertinence": "réponse avec contenu et non pertinente",
+                    "has_ignorance": false,
+                    "score_pertinence": 0.0
+                },
+                "hallucination": {
+                    "hallucination": "réponse avec contenu inventé",
+                    "has_ignorance": false,
+                    "score_hallucination": 0.0
+                },
+                "latence": {
+                    "latency_ms": 774.15,
+                    "score_latence": 0.8
+                },
+                "aveu_ignorance": {
+                    "applicable": true,
+                    "type": "hors_sujet",
+                    "has_ignorance": false,
+                    "matched_expression": null,
+                    "reason": "la question n'est pas reconnu comme hors-sujet"
+                }
+            }
+        },
+        {
+            "question_id": "GS026",
+            "strategy": "strategy_a_llm",
+            "question_type": "complexe",
+            "exactitude_score": 0.0,
+            "pertinence_score": 0.6176470588235294,
+            "hallucination_score": 0.8,
+            "latence_score": 1.0,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.583529411764706,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [
+                        "reconnaissance",
+                        "livret de famille",
+                        "filiation",
+                        "mairie"
+                    ],
+                    "score_exactitude": 0.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.23529411764705882,
+                    "Mots_question_trouvés": [
+                        "je",
+                        "le",
+                        "ne",
+                        "pas"
+                    ],
+                    "score_pertinence": 0.6176470588235294
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 120.09,
+                    "score_latence": 1.0
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "complexe",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS026",
+            "strategy": "strategy_b_rag",
+            "question_type": "complexe",
+            "exactitude_score": 0.0,
+            "pertinence_score": 0.5588235294117647,
+            "hallucination_score": 0.8,
+            "latence_score": 1.0,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.571764705882353,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [
+                        "reconnaissance",
+                        "livret de famille",
+                        "filiation",
+                        "mairie"
+                    ],
+                    "score_exactitude": 0.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.11764705882352941,
+                    "Mots_question_trouvés": [
+                        "je",
+                        "pas"
+                    ],
+                    "score_pertinence": 0.5588235294117647
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 35.2,
+                    "score_latence": 1.0
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "complexe",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS026",
+            "strategy": "strategy_c_qa",
+            "question_type": "complexe",
+            "exactitude_score": 0.25,
+            "pertinence_score": 0.5588235294117647,
+            "hallucination_score": 0.8,
+            "latence_score": 0.8,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.616764705882353,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "mairie"
+                    ],
+                    "keywords_missing": [
+                        "reconnaissance",
+                        "livret de famille",
+                        "filiation"
+                    ],
+                    "score_exactitude": 0.25
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.11764705882352941,
+                    "Mots_question_trouvés": [
+                        "le",
+                        "un"
+                    ],
+                    "score_pertinence": 0.5588235294117647
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 887.24,
+                    "score_latence": 0.8
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "complexe",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS027",
+            "strategy": "strategy_a_llm",
+            "question_type": "complexe",
+            "exactitude_score": 0.0,
+            "pertinence_score": 0.55,
+            "hallucination_score": 0.8,
+            "latence_score": 1.0,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.5700000000000001,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [
+                        "permis de construire",
+                        "declaration prealable",
+                        "piscine",
+                        "architecte",
+                        "150m"
+                    ],
+                    "score_exactitude": 0.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.1,
+                    "Mots_question_trouvés": [
+                        "je"
+                    ],
+                    "score_pertinence": 0.55
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 111.39,
+                    "score_latence": 1.0
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "complexe",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS027",
+            "strategy": "strategy_b_rag",
+            "question_type": "complexe",
+            "exactitude_score": 0.0,
+            "pertinence_score": 0.55,
+            "hallucination_score": 0.8,
+            "latence_score": 1.0,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.5700000000000001,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [
+                        "permis de construire",
+                        "declaration prealable",
+                        "piscine",
+                        "architecte",
+                        "150m"
+                    ],
+                    "score_exactitude": 0.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.1,
+                    "Mots_question_trouvés": [
+                        "une"
+                    ],
+                    "score_pertinence": 0.55
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 152.88,
+                    "score_latence": 1.0
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "complexe",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS027",
+            "strategy": "strategy_c_qa",
+            "question_type": "complexe",
+            "exactitude_score": 0.2,
+            "pertinence_score": 0.55,
+            "hallucination_score": 0.8,
+            "latence_score": 0.8,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.6000000000000001,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "piscine"
+                    ],
+                    "keywords_missing": [
+                        "permis de construire",
+                        "declaration prealable",
+                        "architecte",
+                        "150m"
+                    ],
+                    "score_exactitude": 0.2
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.1,
+                    "Mots_question_trouvés": [
+                        "piscine"
+                    ],
+                    "score_pertinence": 0.55
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 945.78,
+                    "score_latence": 0.8
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "complexe",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS028",
+            "strategy": "strategy_a_llm",
+            "question_type": "complexe",
+            "exactitude_score": 0.0,
+            "pertinence_score": 0.5294117647058824,
+            "hallucination_score": 0.8,
+            "latence_score": 1.0,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.5658823529411765,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [
+                        "ccas",
+                        "fsl",
+                        "cheque energie",
+                        "travailleur social",
+                        "aide"
+                    ],
+                    "score_exactitude": 0.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.058823529411764705,
+                    "Mots_question_trouvés": [
+                        "je"
+                    ],
+                    "score_pertinence": 0.5294117647058824
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 121.56,
+                    "score_latence": 1.0
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "complexe",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS028",
+            "strategy": "strategy_b_rag",
+            "question_type": "complexe",
+            "exactitude_score": 0.0,
+            "pertinence_score": 0.5,
+            "hallucination_score": 0.8,
+            "latence_score": 1.0,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.56,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [
+                        "ccas",
+                        "fsl",
+                        "cheque energie",
+                        "travailleur social",
+                        "aide"
+                    ],
+                    "score_exactitude": 0.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.0,
+                    "Mots_question_trouvés": [],
+                    "score_pertinence": 0.5
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 490.0,
+                    "score_latence": 1.0
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "complexe",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS028",
+            "strategy": "strategy_c_qa",
+            "question_type": "complexe",
+            "exactitude_score": 0.0,
+            "pertinence_score": 0.5882352941176471,
+            "hallucination_score": 0.7000000000000001,
+            "latence_score": 0.8,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.5276470588235295,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [
+                        "ccas",
+                        "fsl",
+                        "cheque energie",
+                        "travailleur social",
+                        "aide"
+                    ],
+                    "score_exactitude": 0.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.17647058823529413,
+                    "Mots_question_trouvés": [
+                        "a",
+                        "en",
+                        "peut"
+                    ],
+                    "score_pertinence": 0.5882352941176471
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [
+                        "impots.gouv.fr"
+                    ],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.7000000000000001
+                },
+                "latence": {
+                    "latency_ms": 935.85,
+                    "score_latence": 0.8
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "complexe",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS029",
+            "strategy": "strategy_a_llm",
+            "question_type": "complexe",
+            "exactitude_score": 0.0,
+            "pertinence_score": 0.5,
+            "hallucination_score": 0.8,
+            "latence_score": 1.0,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.56,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [
+                        "declaration",
+                        "mairie",
+                        "1 mois",
+                        "assurance",
+                        "autorisation",
+                        "voie publique"
+                    ],
+                    "score_exactitude": 0.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.0,
+                    "Mots_question_trouvés": [],
+                    "score_pertinence": 0.5
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 123.26,
+                    "score_latence": 1.0
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "complexe",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS029",
+            "strategy": "strategy_b_rag",
+            "question_type": "complexe",
+            "exactitude_score": 0.0,
+            "pertinence_score": 0.5,
+            "hallucination_score": 0.8,
+            "latence_score": 1.0,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.56,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [
+                        "declaration",
+                        "mairie",
+                        "1 mois",
+                        "assurance",
+                        "autorisation",
+                        "voie publique"
+                    ],
+                    "score_exactitude": 0.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.0,
+                    "Mots_question_trouvés": [],
+                    "score_pertinence": 0.5
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 160.94,
+                    "score_latence": 1.0
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "complexe",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS029",
+            "strategy": "strategy_c_qa",
+            "question_type": "complexe",
+            "exactitude_score": 0.16666666666666666,
+            "pertinence_score": 0.6153846153846154,
+            "hallucination_score": 0.7000000000000001,
+            "latence_score": 0.8,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.583076923076923,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [
+                        "declaration"
+                    ],
+                    "keywords_missing": [
+                        "mairie",
+                        "1 mois",
+                        "assurance",
+                        "autorisation",
+                        "voie publique"
+                    ],
+                    "score_exactitude": 0.16666666666666666
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.23076923076923078,
+                    "Mots_question_trouvés": [
+                        "association",
+                        "la",
+                        "sur"
+                    ],
+                    "score_pertinence": 0.6153846153846154
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [
+                        "associations.gouv.fr"
+                    ],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.7000000000000001
+                },
+                "latence": {
+                    "latency_ms": 767.28,
+                    "score_latence": 0.8
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "complexe",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS030",
+            "strategy": "strategy_a_llm",
+            "question_type": "complexe",
+            "exactitude_score": 0.0,
+            "pertinence_score": 0.5,
+            "hallucination_score": 0.8,
+            "latence_score": 1.0,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.56,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [
+                        "listes electorales",
+                        "compteur eau",
+                        "impots",
+                        "ecole"
+                    ],
+                    "score_exactitude": 0.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.0,
+                    "Mots_question_trouvés": [],
+                    "score_pertinence": 0.5
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 114.95,
+                    "score_latence": 1.0
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "complexe",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS030",
+            "strategy": "strategy_b_rag",
+            "question_type": "complexe",
+            "exactitude_score": 0.0,
+            "pertinence_score": 0.5,
+            "hallucination_score": 0.8,
+            "latence_score": 1.0,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.56,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [
+                        "listes electorales",
+                        "compteur eau",
+                        "impots",
+                        "ecole"
+                    ],
+                    "score_exactitude": 0.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.0,
+                    "Mots_question_trouvés": [],
+                    "score_pertinence": 0.5
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 166.02,
+                    "score_latence": 1.0
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "complexe",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        },
+        {
+            "question_id": "GS030",
+            "strategy": "strategy_c_qa",
+            "question_type": "complexe",
+            "exactitude_score": 0.0,
+            "pertinence_score": 0.5833333333333334,
+            "hallucination_score": 0.8,
+            "latence_score": 0.8,
+            "aveu_ignorance_score": 1.0,
+            "score_global": 0.5466666666666667,
+            "details": {
+                "exactitude": {
+                    "keywords_found": [],
+                    "keywords_missing": [
+                        "listes electorales",
+                        "compteur eau",
+                        "impots",
+                        "ecole"
+                    ],
+                    "score_exactitude": 0.0
+                },
+                "pertinence": {
+                    "pertinence": "Score moyen basé sur longueur et similarité lexicale",
+                    "score_longueur": 1.0,
+                    "score_lexical": 0.16666666666666666,
+                    "Mots_question_trouvés": [
+                        "a",
+                        "les"
+                    ],
+                    "score_pertinence": 0.5833333333333334
+                },
+                "hallucination": {
+                    "suspects_phone": [],
+                    "suspects_url": [],
+                    "suspects_amounts": [],
+                    "suspects_dates": [],
+                    "score_hallucination": 0.8
+                },
+                "latence": {
+                    "latency_ms": 724.26,
+                    "score_latence": 0.8
+                },
+                "aveu_ignorance": {
+                    "applicable": false,
+                    "type": "complexe",
+                    "has_ignorance": false,
+                    "matched_expressions": null,
+                    "reason": "Non applicable pour les questions de type differents de 'hors_sujet'"
+                }
+            }
+        }
+    ]
+}

@@ -3,7 +3,7 @@ Stratégie A : LLM Seul
 Cette stratégie utilise uniquement un modèle de langage (LLM)
 pour générer les réponses aux questions des citoyens.
 
-"""
+"""  # noqa: N999
 import logging
 import os
 import sys

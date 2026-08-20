@@ -1,7 +1,10 @@
 import os
+import textwrap
 
+import requests
 from dotenv import load_dotenv
-from huggingface_hub import InferenceClient
+from huggingface_hub import AsyncInferenceClient
+from huggingface_hub.errors import HfHubHTTPError, InferenceTimeoutError
 
 # appeler la fonction load_dotenv pour charger les variables d'environnement à partir du fichier .env
 load_dotenv()
@@ -12,10 +15,10 @@ if not api_token:
     raise ValueError("Le token de l'API HuggingFace requis pour la stratégie LLM")
 
 # Configurer le client InferenceClient avec le token et un délai d'attente
-client = InferenceClient(token=api_token, timeout=60)
+client = AsyncInferenceClient(token=api_token, timeout=60)
 
  # definir le prompt pour le modele LLM
-PROMPT_SYSTEM = """
+PROMPT_SYSTEM = textwrap.dedent("""
             Tu es un assistant FAQ pour une collectivité territoriale française.
 
             Tu réponds aux questions des citoyens concernant :
@@ -31,7 +34,7 @@ PROMPT_SYSTEM = """
             1. Réponds UNIQUEMENT en français de manière claire et professionnelle
             2. Si tu n'es pas sûr, dis-le clairement
             3. Si la question sort de ton domaine, indique-le poliment
-"""
+""").strip()
     
 # definir le modele
 MODEL_NAME = os.getenv(
@@ -40,9 +43,9 @@ MODEL_NAME = os.getenv(
 )
        
 
-def generate_answer(question: str) -> str:
+async def generate_answer(question: str, client: AsyncInferenceClient = client) -> str:
     """
-        Cette fonction recoit une question et retourne une réponse générée par le modèle LLM.
+        Cette fonction reçoit une question et retourne une réponse générée par le modèle LLM.
         
         args:
             question: La question posée par l'utilisateur.
@@ -54,7 +57,7 @@ def generate_answer(question: str) -> str:
    
     # appeler modele LLM
     if not question.strip():
-        raise ValueError("La question est vide. Veuillez fournir une question.")
+        raise RuntimeError("La question est vide. Veuillez fournir une question.")
     
     try:
         messages = [
@@ -62,7 +65,7 @@ def generate_answer(question: str) -> str:
             {"role": "user", "content": question}
         ]
 
-        reponse = client.chat_completion(
+        reponse = await client.chat_completion(
             model=MODEL_NAME,
             max_tokens=220,
             temperature=0.5,
@@ -76,9 +79,21 @@ def generate_answer(question: str) -> str:
         
         return answer
     
-    except RuntimeError as e:
+    except InferenceTimeoutError as e:
+    # le timeout que tu as configuré (timeout=60) a été dépassé
         raise RuntimeError(
-            "Le modele LLM n'a pas pu générer de réponse."
-            " Veuillez réessayer plus tard."
+            "Le modèle a mis trop de temps à répondre. Veuillez réessayer."
+        ) from e
+        
+    except HfHubHTTPError as e:
+    # toute erreur HTTP renvoyée par l'API (401, 404, 429, 500, 503...)
+        raise RuntimeError(
+            "Le modèle LLM n'a pas pu générer de réponse. Veuillez réessayer plus tard."
+        ) from e
+    
+    except requests.exceptions.RequestException as e:
+    # filet de sécurité pour les erreurs réseau bas niveau (coupure, DNS, etc.)
+        raise RuntimeError(
+            "Erreur réseau lors de l'appel au modèle. Veuillez réessayer plus tard."
         ) from e
     

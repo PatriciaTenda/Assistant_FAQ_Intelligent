@@ -6,13 +6,13 @@ app = FastAPI(
     version="1.0.0",    
 )
 
-@app.get("/")
+@app.get("/", tags=["Système"])
 def accueil():
     return {
         "message": "Bienvenue sur l'API de l'assistant FAQ intelligent. Utilisez les points de terminaison appropriés pour interagir avec le système."
     }
 
-@app.get("/status")
+@app.get("/status", tags=["Système"])
 def get_status():
     return {
         "status" : "L'API est opérationnelle et prête à recevoir des requêtes."

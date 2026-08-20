@@ -58,3 +58,20 @@ def test_question_valide_retourne_200():
         assert reponse.json() == {
             "answer": "reponse simulée"
         }
+        
+def test_service_llm_indisponible_retourne_503():
+    with patch(
+        "src.api.routers.question_endpoint.generate_answer",
+        new=AsyncMock(side_effect=RuntimeError("Le service LLM est indisponible. Veuillez réessayer plus tard."))
+    ):
+        reponse = client.post(
+            "/ask/",
+            json={
+                "question": "Quelles sont les horaires de la decheterie?"
+            }
+        )
+        
+        assert reponse.status_code == 503
+        assert reponse.json() == {
+            "detail": "Le service LLM est indisponible. Veuillez réessayer plus tard."
+        }

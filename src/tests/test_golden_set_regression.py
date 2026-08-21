@@ -72,10 +72,7 @@ async def run_single_question_golden_set(golden_set_element: dict[str, Any]) -> 
     
     return result
 
-@pytest.mark.skipif(
-    os.getenv("RUN_LLM_REGRESSION") != "1",
-    reason="Test LLM réel désactivé par défaut",
-)
+
 async def run_golden_set(golden_set: list[dict[str, Any]])-> list[dict[str, Any]]:
     """
     Cette fonction exécute l'ensemble du golden_set et retourne une liste de dictionnaires avec les résultats de l'exécution.
@@ -92,7 +89,10 @@ async def run_golden_set(golden_set: list[dict[str, Any]])-> list[dict[str, Any]
         results.append(result)
     return results
 
-
+@pytest.mark.skipif(
+    os.getenv("RUN_LLM_REGRESSION") != "1",
+    reason="Test LLM réel désactivé par défaut",
+)
 def test_non_regression_golden_set(tmp_path):
     """
         Cette fonction teste la non-régression du golden_set afin de comparer le score fixé comme seuil avec le score attendu.

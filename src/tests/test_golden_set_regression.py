@@ -72,7 +72,6 @@ async def run_single_question_golden_set(golden_set_element: dict[str, Any]) -> 
     
     return result
 
-
 async def run_golden_set(golden_set: list[dict[str, Any]])-> list[dict[str, Any]]:
     """
     Cette fonction exécute l'ensemble du golden_set et retourne une liste de dictionnaires avec les résultats de l'exécution.

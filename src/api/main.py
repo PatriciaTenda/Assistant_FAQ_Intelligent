@@ -30,7 +30,7 @@ def accueil():
     }
 
 # Inclure le routeur de l'endpoint de question dans l'application FastAPI
-app.include_router(question_router, prefix="/api", tags=["Answer"])
+app.include_router(question_router, tags=["Answer"])
 
 # Configurer l'instrumentation Prometheus pour la surveillance des métriques
 Instrumentator().instrument(app).expose(app, endpoint="/metrics", tags=["Monitoring"])

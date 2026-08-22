@@ -1,22 +1,36 @@
+import logging
+
 from fastapi import FastAPI
+from prometheus_fastapi_instrumentator import Instrumentator
 from src.api.routers.question_endpoint import router as question_router
 
+# Configurer le logger
+logging.basicConfig(level = logging.INFO,
+                    format = "%(asctime)s - %(levelname)s - %(message)s" 
+)
+
+# Définir l'application FastAPI
 app = FastAPI(
     title="Assistant FAQ Intelligent",
     version="1.0.0",    
 )
 
-@app.get("/", tags=["Système"])
-def accueil():
-    return {
-        "message": "Bienvenue sur l'API de l'assistant FAQ intelligent. Utilisez les points de terminaison appropriés pour interagir avec le système."
-    }
-
-@app.get("/status", tags=["Système"])
+# endpoint pour vérifier l'état de santé de l'application
+@app.get("/status", tags=["Monitoring"])
 def get_status():
     return {
-        "status" : "L'API est opérationnelle et prête à recevoir des requêtes."
+        "status" : "healthy",
+        "version": app.version
+    }
+# endpoint pour la page d'accueil de l'API   
+@app.get("/", tags=["System"])
+def accueil():
+    return {
+        "message": "Bienvenue sur l'API de l'assistant FAQ intelligent."
     }
 
+# Inclure le routeur de l'endpoint de question dans l'application FastAPI
+app.include_router(question_router, prefix="/api", tags=["Answer"])
 
-app.include_router(question_router)
+# Configurer l'instrumentation Prometheus pour la surveillance des métriques
+Instrumentator().instrument(app).expose(app, endpoint="/metrics", tags=["Monitoring"])
